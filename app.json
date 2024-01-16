@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "photopharmics",
+    "slug": "photopharmics",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
