@@ -1,0 +1,29 @@
+{
+  "font-nunito-200": {
+    "fontFamily": "NunitoSans_200ExtraLight"
+  },
+  "font-nunito-300": {
+    "fontFamily": "NunitoSans_300Light"
+  },
+  "font-nunito-400": {
+    "fontFamily": "NunitoSans_400Regular"
+  },
+  "font-nunito-600": {
+    "fontFamily": "NunitoSans_600SemiBold"
+  },
+  "font-nunito-700": {
+    "fontFamily": "NunitoSans_700Bold"
+  },
+  "font-nunito-800": {
+    "fontFamily": "NunitoSans_800ExtraBold"
+  },
+  "font-nunito-900": {
+    "fontFamily": "NunitoSans_900Black"
+  },
+  "shadow": {
+    "shadowColor": "black",
+    "shadowOffset": { "width": 0, "height": -5 },
+    "shadowRadius": 5,
+    "elevation": 4
+  }
+}

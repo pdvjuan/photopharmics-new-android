@@ -1,0 +1,39 @@
+{
+    "project_info": {
+      "project_number": "339231095246",
+      "project_id": "celeste-871e7",
+      "storage_bucket": "celeste-871e7.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:339231095246:android:8040b58fe3b43c6899539f",
+          "android_client_info": {
+            "package_name": "com.photopharmics.celestemobile"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "339231095246-186ies12n96ddi2u8p1o7mis2f7cqso2.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyD5gIr18GR3slwHXU_jTaYuIA7btErEQ1o"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "339231095246-186ies12n96ddi2u8p1o7mis2f7cqso2.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }

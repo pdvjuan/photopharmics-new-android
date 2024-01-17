@@ -1,4 +1,4 @@
-package com.photopharmics;
+package com.photopharmics.celestemobile;
 
 import android.os.Build;
 import android.os.Bundle;

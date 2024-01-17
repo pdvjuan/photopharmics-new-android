@@ -1,21 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { QueryClientProvider, QueryClient } from "react-query";
+import AppController from "./AppController";
+import { AppProvider } from "./src/context/AppContext";
+import { Amplify } from "aws-amplify";
+import awsconfig from "./aws.config";
+import { LogBox } from "react-native";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+LogBox.ignoreLogs(["Setting a timer"]);
+LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+LogBox.ignoreAllLogs()
+Amplify.configure(awsconfig());
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      retry: 1,
+    },
   },
 });
+
+export default () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AppProvider>
+        <AppController />
+      </AppProvider>
+    </QueryClientProvider>
+  );
+};

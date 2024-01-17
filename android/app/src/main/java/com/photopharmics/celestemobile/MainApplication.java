@@ -1,4 +1,4 @@
-package com.photopharmics;
+package com.photopharmics.celestemobile;
 
 import android.app.Application;
 import android.content.res.Configuration;

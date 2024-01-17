@@ -81,9 +81,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.photopharmics"
+    namespace "com.photopharmics.celestemobile"
     defaultConfig {
-        applicationId "com.photopharmics"
+        applicationId "com.photopharmics.celestemobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

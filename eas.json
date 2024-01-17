@@ -1,0 +1,34 @@
+{
+  "build": {
+    "release": {
+      "releaseChannel": "prod",
+      "distribution": "store",
+      "env": {
+        "CELESTE_API_URL": "https://api.photopharmics-celeste.com",
+        "COGNITO_USER_POOL": "us-west-2_BPQyb0Lce",
+        "COGNITO_WEB_CLIENT": "74f3voihvifsacftl0rcu926lp"
+      },
+      "android": {
+        
+      },
+      "ios": {
+        "autoIncrement": "version"
+      }
+    },
+    "development": {
+      "releaseChannel": "dev",
+      "distribution": "internal",
+      "developmentClient": true,
+      "env": {
+        "CELESTE_API_URL": "https://develop.api.photopharmics-celeste.com",
+        "COGNITO_USER_POOL": "us-west-2_yt66fTDXo",
+        "COGNITO_WEB_CLIENT": "htda39b6u6evgsv67pepvc53e"
+      },
+      "android": {},
+      "ios": {}
+    }
+  },
+  "cli": {
+    "version": ">= 0.47.0"
+  }
+}

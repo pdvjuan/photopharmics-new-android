@@ -1,10 +1,63 @@
 {
   "expo": {
     "name": "photopharmics",
-    "slug": "photopharmics",
-    "version": "1.0.0",
+    "slug": "celeste",
+    "version": "1.0.19",
+    "privacy": "unlisted",
+    "orientation": "portrait",
+    "backgroundColor": "#ffffff",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
     "assetBundlePatterns": [
       "**/*"
-    ]
-  }
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.photopharmics.celestetest",
+      "infoPlist": {
+        "NSBluetoothPeripheralUsageDescription": "We use bluetooth to connect to the Celeste device and help track your sessions"
+      }
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "translucent": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.photopharmics.celestemobile",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "INTERNET"
+      ],
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 15
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "@config-plugins/react-native-ble-plx"
+    ],
+    "entryPoint": "node_modules/expo/AppEntry.js",
+    "extra": {
+      "eas": {
+        "projectId": "2a92d6cb-4a24-42b9-953d-172ad0d4fddf"
+      }
+    }
+  },
+  "displayName": "Celeste - PhotoPharmics",
+  "name": "photopharmicscelestemobile"
 }
