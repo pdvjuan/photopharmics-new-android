@@ -1,10 +1,10 @@
 import { Alert } from "react-native";
 import { useMutation } from "react-query";
 import { useAppContext } from "../../../context/AppContext";
-import { Auth } from "@aws-amplify/auth";
+import { signOut } from "@aws-amplify/auth";
 
 const AmplifySignout = async () => {
-  await Auth.signOut();
+  await signOut();
 };
 
 const useSignoutMutation = () => {

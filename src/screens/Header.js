@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { tw, getColor } from "tailwind";
+import { tw, getColor } from "../../tailwind";
 import { MenuIcon, RefreshIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/core";
 

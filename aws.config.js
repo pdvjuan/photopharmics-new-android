@@ -6,6 +6,6 @@ export default () => {
       userPoolWebClientId:
         process.env.COGNITO_WEB_CLIENT || "5oqqtrhr5t6n1m9ik5ejlmfma4",
       authenticationFlowType: "USER_PASSWORD_AUTH",
-    },
+    }
   };
 };
