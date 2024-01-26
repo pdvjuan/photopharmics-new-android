@@ -106,6 +106,7 @@ export default () => {
             drawerType="front"
             hideStatusBar={true}
             statusBarAnimation="slide"
+            screenOptions={{ headerShown: false }}
             minSwipeDistance={5}
             drawerContent={(props) => (
               <DrawerContent {...props} signOut={signOut} />

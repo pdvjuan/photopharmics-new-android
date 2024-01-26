@@ -198,19 +198,25 @@ const LogsToSessions = (logs) => {
       //   duration = timeEnd.diff(timeStart, "minutes");
       // }
 
-      function convertToUserTimeZone(sessionDate, sessionTime, userTimeZone2) {
-        // Parse the session date and time as UTC and then convert it to the user's time zone
-        const convertedDate = moment(`${sessionDate} ${sessionTime}`);
-        const newD = convertedDate.tz(userTimeZone2);
-        
-        return moment(newD).tz('America/Los_Angeles').format('YYYY-MM-DD HH:mm:ss');;
+      function convertToUserTimeZone(sessionDate, sessionTime, userTimeZone) {
+        // Parse the session date and time in UTC
+        const utcDate = new Date(`${sessionDate}T${sessionTime}Z`);
+
+
+        // Use moment-timezone to convert the UTC date to the user's time zone
+        const convertedDate = moment(utcDate).tz(userTimeZone);
+
+        // Add 6 hours to the converted date
+        convertedDate.add(6, 'hours');
+    
+        return convertedDate;
     }
 
     if (comparisonStartDate > cutOffDate) {
         timeStart = convertToUserTimeZone(on.sessionDate, on.sessionTime, userTimeZone);
         console.log("Start time:", timeStart);
         startTimeString = moment(timeStart).format("HH:mm:ss");
-        
+        console.log("filter", startTimeString);
     } else {
         timeStart = moment(`${on.sessionDate} ${on.sessionTime}`);
         startTimeString = moment(timeStart).format("HH:mm:ss");
