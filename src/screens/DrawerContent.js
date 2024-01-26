@@ -1,6 +1,6 @@
-import React from "react";
-import { Text, TouchableOpacity, View, Image, Alert } from "react-native";
-import { tw, getColor } from "../../tailwind";
+import React from 'react';
+import { Text, TouchableOpacity, View, Image, Alert } from 'react-native';
+import { tw, getColor } from "tailwind";
 import {
   HomeIcon,
   CalendarIcon,

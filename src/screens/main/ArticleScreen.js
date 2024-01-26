@@ -3,9 +3,9 @@ import { View } from "react-native";
 import usePostsQuery from "../../api/celeste-blog/queries/usePostsQuery";
 import { WebView } from "react-native-webview";
 import { tw } from "tailwind";
-import PageContainer from "../PageContainer";
+import {PageContainer} from "../PageContainer";
 
-const ArticleScreen = ({ navigation, route }) => {
+const ArticleScreen = ({ route }) => {
   const postId = route?.params?.postId;
   const { data: cards, isLoading, isError } = usePostsQuery("card");
 

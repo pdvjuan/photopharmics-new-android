@@ -10,7 +10,7 @@ const GetSessions = async (userId) => {
     console.log("Nothing came in");
   } else {
     console.log("After getting sessions");
-    console.log('this is the sessions', sessions);
+    //console.log('this is the sessions', sessions);
   }
   
   return sessions;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Image, Text, StyleSheet, View, Platform } from "react-native";
 import { Button } from "../base";
-import { tw } from "../../tailwind";
+import { tw } from "tailwind";
 import OpenAppSettings from "../helpers/device/OpenAppSettings";
 import PageContainer from "./PageContainer";
 

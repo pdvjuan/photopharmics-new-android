@@ -1,32 +1,23 @@
 import { Alert } from "react-native";
 import { useMutation } from "react-query";
 import { useAppContext } from "../../../context/AppContext";
-import { signIn, currentAuthenticatedUser,fetchUserAttributes } from "@aws-amplify/auth";
+import { Auth } from "@aws-amplify/auth";
 import { navigate } from "../../../helpers/navgationRef";
 
 const AmplifySignIn = async ({ username, password }) => {
-  const { isSignedIn, nextStep } = await signIn({ username, password });
-  if (isSignedIn) {
-    // Fetching the current authenticated user's data
-    const user = currentAuthenticatedUser;
-    const attributes = fetchUserAttributes(user);
-    return attributes
-  } else {
-    // Handle additional steps like MFA or confirmation
-  }
+  const user = await Auth.signIn(username, password);
+  return user;
 };
 
 const useSigninMutation = () => {
   const { dispatch } = useAppContext();
   return useMutation(AmplifySignIn, {
-    onSuccess: (attributes) => {
-      // Dispatching user data to the global state
-      dispatch({ type: "SIGN_IN", payload: attributes });
+    onSuccess: (user) => {
+      dispatch({ type: "SIGN_IN", payload: user?.attributes });
     },
     onError: onError,
   });
 };
-
 
 const onError = (error) => {
   const { code, message } = error;

@@ -1,5 +1,6 @@
-import React, { useEffect, useState , useRef } from "react";
-import { RefreshControl, Alert, FlatList, TouchableOpacity, View, Text } from "react-native";
+import React from 'react';
+import { View, Text, FlatList, Alert} from 'react-native';
+import { useEffect, useState , useRef } from 'react';
 import usePostsQuery from "../../api/celeste-blog/queries/usePostsQuery";
 import useSessionsQuery from "../../api/celeste/queries/useSessionsQuery";
 import HomeDashboard from "../../components/HomeDashboard";
@@ -8,9 +9,9 @@ import useNotificationsPermissionQuery from "../../api/device/queries/useNotific
 import { useNavigation } from '@react-navigation/native';
 import PulsingDiv from "../../skeletons/PulsingDiv";
 import PageContainer from "../PageContainer";
-import { useAppContext } from "../../context/AppContext";
+import {useAppContext}  from "../../context/AppContext";
 import { navigate} from "../../helpers/navgationRef";
-import { tw } from "tailwind";
+import { tw,  getColor } from "tailwind";
 import {
   CalendarIcon,
   PresentationChartBarIcon,
@@ -24,17 +25,14 @@ import {
   ExclamationCircleIcon,
   XCircleIcon,
 } from "react-native-heroicons/outline";
-import { getColor } from "tailwind";
 import Calendar from "../../components/Calendar";
 import GetOneMonth from "../../helpers/calendar/GetOneMonth";
-import * as Notifications from 'expo-notifications';
+import * as Notifications from "expo-notifications";
 import DeviceInfo from "react-native-device-info";
 
-
-
-
-const HomeScreen = ({route}) => {
+const HomeScreen = () => {
   // GETS EXPO PUSH PERMISSIONS
+  
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(response => {
@@ -65,37 +63,6 @@ const HomeScreen = ({route}) => {
   const [givenName, setGivenName] = useState(user.given_name);
   const [recent_sync, setRecentSync] = useState(user?.["custom:recent_sync"]);
 
-  // const [isToggleOn, setIsToggleOn] = useState(false);
-
-  // Define different values for true and false states
-  // const textWhenOn = "On";
-  // const textWhenOff = "Off";
-  // const handleToggle = () => {
-  //   setIsToggleOn(!isToggleOn);
-  // };
-
-  //const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  let userTimeZone = null;
-
-  if (Platform.OS === "android") {
-    userTimeZone = DeviceInfo.timeZone;
-  }
-  else{
-    userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  }
-  
-  //console.log(recent_sync);
-  const timestamp = parseInt(recent_sync, 10); // Parse it as an integer
-  let formattedDate = "Last Sync Not Found"
-
-  if (!isNaN(timestamp)) {
-    const date = new Date(timestamp);
-    // Now you can format the date as needed, e.g., MM/DD/YYYY
-    formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-  } else {
-    console.error("Invalid timestamp format");
-  }
-
   // const {
   //  data: cards,
   //  isLoading: isLoadingCards,
@@ -105,10 +72,32 @@ const HomeScreen = ({route}) => {
  
   // console.log(cards);
 
-  const { data: sessions, 
+let userTimeZone = null;
+
+  userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  
+  
+  const timestamp = parseInt(recent_sync, 10); // Parse it as an integer
+  let formattedDate = "Last Sync Not Found"
+
+  if (!isNaN(timestamp)) {
+    const date = new Date(timestamp);
+    console.log(date);
+    // Now you can format the date as needed, e.g., MM/DD/YYYY
+    formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  } else {
+    console.error("Invalid timestamp format");
+  }
+
+  
+
+    const { data: sessions, 
     isLoading,
     isError,
   } = useSessionsQuery(state?.user?.sub);
+
+  
   let continuousDays = 0; // Initialize to 0
   let duration = 0;
   let length = "Loading..";
@@ -121,15 +110,17 @@ const HomeScreen = ({route}) => {
       const dateB = new Date(b.sessionDate);
       
       // Compare dates directly
-      return dateB- dateA;
+      return dateB - dateA;
     });
 
-    const today = new Date().toLocaleString('en-US', { timeZone: userTimeZone }); // Get the current date
-    const todayDateLoop = new Date(today);
-    let previousDate = new Date(today);
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // months are 0-indexed
+    const day = String(now.getDate()).padStart(2, '0');
+    const todayDateStr = `${year}-${month}-${day}`;
+    console.log("Today's date in YYYY-MM-DD format:", todayDateStr);
 
-
-    const todayDateStr = todayDateLoop.toISOString().split('T')[0]; // Today's date in "YYYY-MM-DD" format
+    let previousDate = new Date();
 
     // Check if there's an entry for today and start the streak from 1 if so
     if (sessions.some(session => new Date(session.sessionDate).toISOString().split('T')[0] === todayDateStr)) {
@@ -181,11 +172,11 @@ const HomeScreen = ({route}) => {
     // Use toLocaleString with the specified options
     const formattedDate = userDate.toLocaleString('en-US', options);
 
-    const year = userDate.getFullYear();
-    const month = String(userDate.getMonth() + 1).padStart(2, '0');
-    const day = String(userDate.getDate()).padStart(2, '0');
+    const yearV = userDate.getFullYear();
+    const monthV = String(userDate.getMonth() + 1).padStart(2, '0');
+    const dayV = String(userDate.getDate()).padStart(2, '0');
 
-    const todayDate = `${year}-${month}-${day}`;
+    const todayDate = `${yearV}-${monthV}-${dayV}`;
 
     console.log("HOME: Toadys Date: ",todayDate); // Outputs: YYYY-MM-DD
 
@@ -210,25 +201,7 @@ const HomeScreen = ({route}) => {
       // No session found for today
       console.log('HOME: No session found for today.');
     }
-};
-
-
-
-// // Define an object with the params you want to pass
-//   const paramsToPass = {
-//     contDays: continuousDays,
-//     recDate: recentDate,
-//     len: length,
-//     dur: duration,
-//     timeL: timeLeft,
-//     dashboardVisible: true
-//   };
-  
-  const navigateToBluetoothScan = () => {
-    navigate("BluetoothScan");
-    console.log("Going to scan");
   };
-
 
 
 const getHeader = () => {
@@ -368,15 +341,15 @@ const getHeader = () => {
         <View style={tw("flex-1 flex-row items-center justify-between")}>
           <View style={tw("flex-row items-center")}>
             <XCircleIcon color={getColor("red-500")} size={24} />
-            <Text style={tw("font-nunito-400 text-m pl-2")}>0 - 29 min</Text>
+            <Text style={tw("font-nunito-400 pl-2")}>0 - 29 min</Text>
           </View>
           <View style={tw("flex-row items-center")}>
             <ExclamationCircleIcon color={getColor("yellow-500")} size={24} />
-            <Text style={tw("font-nunito-400 text-m pl-2")}>30 - 44 min</Text>
+            <Text style={tw("font-nunito-400 pl-2")}>30 - 44 min</Text>
           </View>
           <View style={tw("flex-row items-center")}>
             <CheckCircleIcon color={getColor("green-500")} size={24} />
-            <Text style={tw("font-nunito-400 text-m pl-2")}>45 - 60 min</Text>
+            <Text style={tw("font-nunito-400 pl-2")}>45 - 60 min</Text>
           </View>
         </View>
 
@@ -446,7 +419,7 @@ const getHeader = () => {
         }
         onScrollToIndexFailed={() => {
           setTimeout(() => {
-            monthsRef.current.scrollToIndex({ animated: true, index: 0 });
+            monthsRef.current.scrollToIndex({ animated: true, index: 1 });
           }, 500);
         }}
       />
@@ -456,3 +429,4 @@ const getHeader = () => {
 };
 
 export default HomeScreen;
+

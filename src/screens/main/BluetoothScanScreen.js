@@ -4,21 +4,13 @@ import { Button } from "../../base";
 import PageContainer from "../PageContainer";
 import { ActivityIndicator } from "react-native";
 import { BleManager } from "react-native-ble-plx";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 import useScanBLEDevicesQuery from "../../api/device/queries/useScanBLEDevicesQuery";
 import BluetoothRequiredScreen from "../BluetoothRequiredScreen";
 import BluetoothSyncScreen from "./BluetoothSyncScreen";
 import IdentifyMyDeviceScreen from "./IdentifyMyDeviceScreen";
 import useSavedDeviceQuery from "../../api/device/queries/useSavedDeviceQuery";
 import useSaveDeviceMutation from "../../api/device/mutations/useSaveDeviceMutation";
-import {
-  CalendarIcon,
-  PresentationChartBarIcon,
-  RefreshIcon,
-  TrendingUpIcon,
-} from "react-native-heroicons/outline";
-import DataRow from "../../components/DashboardDataRow";
-import useSessionsQuery from "../../api/celeste/queries/useSessionsQuery";
 import { useAppContext } from "../../context/AppContext";
 
 

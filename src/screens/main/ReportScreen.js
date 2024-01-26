@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Text, View, FlatList } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 import PageContainer from "../PageContainer";
 import {
   CheckCircleIcon,
