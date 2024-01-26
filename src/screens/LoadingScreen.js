@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
   Platform
 } from "react-native";
-import { tw, getColor } from "tailwind";
+import { tw, getColor } from "../../tailwind";
 import useCurrentUserQuery from "../api/cognito/queries/useCurrentUserQuery";
 
 const LoadingScreen = () => {

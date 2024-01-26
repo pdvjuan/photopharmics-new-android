@@ -1,13 +1,7 @@
 import React from "react";
-import { View, Text, FlatList,Linking,TouchableOpacity, ActivityIndicator } from "react-native";
-import { AccordionListItem } from "../../base";
+import { View, Text, Linking,TouchableOpacity } from "react-native";
 import { tw } from "tailwind";
 import PageContainer from "../PageContainer";
-import usePostsQuery from "../../api/celeste-blog/queries/usePostsQuery";
-import DataRow from "../../components/DashboardDataRow";
-import {
-  TrendingUpIcon,
-} from "react-native-heroicons/outline";
 
 
 const AboutScreen = () => {

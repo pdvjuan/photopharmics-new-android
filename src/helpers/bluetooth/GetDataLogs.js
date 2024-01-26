@@ -8,7 +8,7 @@ const GetDataLogs = (characteristics) => {
     characteristics.notifyCharacteristic.monitor((error, notifyChar) => {
       if (error) reject(error);
       if (!notifyChar?.value) return;
-      console.log('THIS IS WHAT IM LOOKING FOR', characteristics)
+      //console.log('THIS IS WHAT IM LOOKING FOR', characteristics)
       let new_line = Buffer.from(notifyChar.value, "base64").toString("ascii");
       data = data + new_line;
 

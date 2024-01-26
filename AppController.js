@@ -1,15 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect} from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useAppContext } from "./src/context/AppContext";
-import { navigationRef } from "./src/helpers/navgationRef";
+import  {useAppContext}  from "./src/context/AppContext";
+import { navigationRef}  from "./src/helpers/navgationRef";
 import useSignoutMutation from "./src/api/cognito/mutations/useSignoutMutation";
 import * as Notifications from "expo-notifications";
 import WelcomeScreen from "./src/screens/onboarding/WelcomeScreen";
 import RecordSessionWalkthroughScreen from "./src/screens/onboarding/RecordSessionWalkthroughScreen";
 import SyncWalkthroughScreen from "./src/screens/onboarding/SyncWalkthroughScreen";
-
 
 // FONTS
 import {
@@ -33,7 +32,7 @@ import ForgotScreen from "./src/screens/auth/ForgotScreen";
 import NewPasswordScreen from "./src/screens/auth/NewPasswordScreen";
 import ConfirmCodeScreen from "./src/screens/auth/ConfirmCodeScreen";
 // MAIN SCREENS
-import HomeScreen from "./src/screens/main/HomeScreen";
+import HomeScreen from './src/screens/main/HomeScreen';
 import ArticleScreen from "./src/screens/main/ArticleScreen";
 import ReportScreen from "./src/screens/main/ReportScreen";
 import SettingsScreen from "./src/screens/main/SettingsScreen";
@@ -107,29 +106,30 @@ export default () => {
             drawerType="front"
             hideStatusBar={true}
             statusBarAnimation="slide"
+            screenOptions={{ headerShown: false }}
             minSwipeDistance={5}
             drawerContent={(props) => (
               <DrawerContent {...props} signOut={signOut} />
             )}
-            openByDefault={false}
+            defaultStatus='closed'
             initialRouteName="Home"
           >
-            <MainStack.Screen name="Home" component={HomeScreen} />
-            <MainStack.Screen name="Report" component={ReportScreen} />
-            <MainStack.Screen name="Settings" component={SettingsScreen} />
-            <MainStack.Screen name="Supporters" component={SupportersScreen} />
-            <MainStack.Screen name="About" component={AboutScreen} />
-            <MainStack.Screen name="Article" component={ArticleScreen} />
+             <MainStack.Screen name="Home" component={HomeScreen} />
+             <MainStack.Screen name="Report" component={ReportScreen} />
+             <MainStack.Screen name="Settings" component={SettingsScreen} />
+             <MainStack.Screen name="Supporters" component={SupportersScreen} />
+             <MainStack.Screen name="About" component={AboutScreen} />
+             <MainStack.Screen name="Article" component={ArticleScreen} />
             <MainStack.Screen
-              name="BluetoothScan"
-              component={BluetoothScanScreen}
-              options={{ unmountOnBlur: true }}
-            />
-            <MainStack.Screen
-              name="BluetoothSync"
-              component={BluetoothSyncScreen}
-              options={{ unmountOnBlur: true }} 
-            />
+               name="BluetoothScan"
+               component={BluetoothScanScreen}
+               options={{ unmountOnBlur: true }}
+             />
+             <MainStack.Screen
+               name="BluetoothSync"
+               component={BluetoothSyncScreen}
+               options={{ unmountOnBlur: true }} 
+             />
           </MainStack.Navigator>
         )
       ) : (

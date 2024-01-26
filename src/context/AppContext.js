@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useContext } from "react";
+import React, { useReducer, createContext, useContext } from 'react';
 
 const AppContext = createContext();
 const INITIAL_STATE = { authenticated: null, user: null, bluetooth: null };

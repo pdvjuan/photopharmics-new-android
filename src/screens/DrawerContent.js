@@ -1,5 +1,5 @@
-import React from "react";
-import { Text, TouchableOpacity, View, Image, Alert } from "react-native";
+import React from 'react';
+import { Text, TouchableOpacity, View, Image, Alert } from 'react-native';
 import { tw, getColor } from "tailwind";
 import {
   HomeIcon,
@@ -8,6 +8,8 @@ import {
   HeartIcon,
   InformationCircleIcon,
 } from "react-native-heroicons/outline";
+
+
 
 const TEXT_STYLES = tw("text-2xl text-celeste-darkgray text-left flex-1 pl-4");
 
