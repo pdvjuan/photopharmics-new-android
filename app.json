@@ -43,7 +43,7 @@
         "INTERNET"
       ],
       "googleServicesFile": "./google-services.json",
-      "versionCode": 15
+      "versionCode": 16
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -51,7 +51,7 @@
     "plugins": [
       "@config-plugins/react-native-ble-plx"
     ],
-    "entryPoint": "node_modules/expo/AppEntry.js",
+ 
     "extra": {
       "eas": {
         "projectId": "2a92d6cb-4a24-42b9-953d-172ad0d4fddf"
