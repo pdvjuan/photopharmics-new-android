@@ -48,13 +48,14 @@ const RecordSessionWalkthroughScreen = () => {
             source={require("../../../assets/blankDeviceBlueScreen.png")}
           /> */}
           <Text
+          selectable={true}
           style={tw(
             "font-nunito-400 text-base text-center pt-1 text-celeste-darkgray"
           )}
         >
           The device will automatically turn off at the end of each session.
           For troubleshooting, review the Quick Start Guide that came with 
-          your device. Concerns or questions?
+          your device. Concerns or questions? Email us at LIGHT-PD.CelesteSupport@chet.rochester.edu
           
           
         
@@ -67,7 +68,7 @@ const RecordSessionWalkthroughScreen = () => {
           
           <TouchableOpacity onPress={handleEmailPress}>
             <Text style={tw("text-celeste-blue underline text-center pt-1")}>
-              Email us at LIGHT-PD.CelesteSupport@chet.rochester.edu
+            Tap to email us at LIGHT-PD.CelesteSupport@chet.rochester.edu
             </Text>
           </TouchableOpacity>
           <Button

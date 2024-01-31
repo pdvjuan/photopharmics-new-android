@@ -14,7 +14,7 @@ const WelcomeScreen = () => {
     <PageContainer noHeader={true} style={tw("flex-1 justify-center")}>
       <View style={tw("flex-1 p-10 mt-20")}>
         <Text style={tw("font-nunito-700 text-2xl text-center mb-0.5")}>
-          Welcome to CR Celeste® mobile
+          Welcome to Celeste® mobile
         </Text>
         <Text
           style={tw(
@@ -23,7 +23,7 @@ const WelcomeScreen = () => {
         >
           You can now track your daily Celeste sessions, set reminders, and manage your account.
           As part of the Celeste Light for PD Clinical Trial, you agree to complete a 60- minute 
-          session daily.The Celeste Mobile application will track completed sessions by 
+          session daily. The Celeste Mobile application will track completed sessions by 
           collecting data from your device.
         </Text>
         <Button

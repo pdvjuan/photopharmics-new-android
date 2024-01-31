@@ -44,16 +44,16 @@ const BluetoothScanScreen = ({ navigation: { navigate } }) => {
     setDevice(ble);
   };
 
-  useEffect(() => {
-    // Check if devices are loaded and the list is not empty
-    if (devices && devices.length > 0 && !device) {
-      // Automatically select the first device from the list
-      setDevice(devices[0].ble);
+  // useEffect(() => {
+  //   // Check if devices are loaded and the list is not empty
+  //   if (devices && devices.length > 0 && !device) {
+  //     // Automatically select the first device from the list
+  //     setDevice(devices[0].ble);
 
-      // Optionally, save the device or perform other actions here
-      saveDeviceToStorage({ deviceName: devices[0].ble.localName });
-    }
-  }, [devices, device, saveDeviceToStorage]);
+  //     // Optionally, save the device or perform other actions here
+  //     saveDeviceToStorage({ deviceName: devices[0].ble.localName });
+  //   }
+  // }, [devices, device, saveDeviceToStorage]);
 
   if (isError)
     return <BluetoothRequiredScreen error={error?.message} refetch={refetch} />;

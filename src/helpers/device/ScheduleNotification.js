@@ -30,6 +30,7 @@ async function schedulePushNotification(hour, minute) {
     content: {
       title: "Celeste Session Reminder",
       body: "This is your daily reminder to complete your daily session.",
+      data: { screen: "  "},
     },
     trigger: {
       hour: hour,

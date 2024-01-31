@@ -30,10 +30,14 @@ const SettingsNotificationsScreen = () => {
   const { refetch } = useNotificationsPermissionQuery();
   const { mutate: updateUser, isLoading } = useUpdateUserMutation();
   const [time, setTime] = useState(new Date());
+  console.log("init time, ", time);
   const [show, setShow] = useState(false);
 
   const onChange = (event, selectedTime) => {
+    console.log("in OnChange, stime ", selectedTime);
+    console.log("in OnChange, time ", time);
     const currentTime = selectedTime || time;
+    console.log("in OnChange, scurrtime ", currentTime);
     setShow(Platform.OS === "ios");
     setTime(currentTime);
   };
@@ -190,7 +194,8 @@ const SettingsNotificationsScreen = () => {
                   <View style={tw("w-64")}>
                     <Text style={tw("font-nunito-400 text-base w-full")}>
                       Your daily reminder is set for{" "}
-                      {time.getHours() > 12
+                      {
+                        time.getHours() > 12
                         ? time.getHours() - 12
                         : time.getHours()}
                       :
