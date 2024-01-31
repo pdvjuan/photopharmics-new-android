@@ -58,6 +58,16 @@ const AboutScreen = () => {
     </View>
       </TouchableOpacity>
 
+      <View
+      style={tw(
+        "flex flex-row justify-between items-center border-b border-gray-200 py-2"
+      )}
+    >
+      <View>
+        <Text selectable={true} style={tw("text-celeste-blue text-lg")}>{email}</Text>
+      </View>
+    </View>
+
     <View style={{flexDirection:'row', paddingBottom:10, justifyContent:'space-between'}}>
     </View> 
   </View>
