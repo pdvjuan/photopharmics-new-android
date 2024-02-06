@@ -28,7 +28,7 @@ const GetNotificationPermission = async (expo_token, dispatch) => {
     // WATCH: THE EXPERIENCE ID SHOULD BE AUTOMATED SOON. https://forums.expo.io/t/runtime-error-no-experienceid-found/54708/2
     const token = (
       await Notifications.getExpoPushTokenAsync({
-        experienceId: "@axialabs/celeste",
+        projectId: "@axialabs/celeste",
       })
     ).data;
     console.info("NEW TOKEN:", token); // DEBUG_VAL: THIS VALUE CAN BE USED HERE https://expo.dev/notifications

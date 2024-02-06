@@ -30,10 +30,6 @@
       "translucent": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
       "package": "com.photopharmics.celestemobile",
       "permissions": [
         "ACCESS_COARSE_LOCATION",
@@ -43,7 +39,7 @@
         "INTERNET"
       ],
       "googleServicesFile": "./google-services.json",
-      "versionCode": 16
+      "versionCode": 22
     },
     "web": {
       "favicon": "./assets/favicon.png"
