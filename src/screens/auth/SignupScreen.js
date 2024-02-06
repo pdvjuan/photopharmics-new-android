@@ -36,8 +36,7 @@ const SignupScreen = () => {
         given_name: givenName,
         family_name: familyName,
         phone_number: phoneNumber,
-        //gender,
-        'custom:expo_token':""
+        'custom:expo_token': "INIT"
       },
     });
   };
