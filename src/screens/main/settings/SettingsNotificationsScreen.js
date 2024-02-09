@@ -65,9 +65,9 @@ const SettingsNotificationsScreen = () => {
         setTime(tempTime);
       } else if (expo_token) {
         Notifications.cancelAllScheduledNotificationsAsync();
-        schedulePushNotification(20, 0);
-        tempTime.setHours(20);
-        tempTime.setMinutes(0);
+        schedulePushNotification(18, 30);
+        tempTime.setHours(18);
+        tempTime.setMinutes(30);
         setTime(tempTime);
       }
     });
