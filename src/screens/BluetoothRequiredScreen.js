@@ -12,11 +12,11 @@ const BluetoothRequiredScreen = ({ error, refetch }) => {
     let message = error;
 
     if (error.includes("powered")) {
-      message = "Bluetooth is off. Please turn it on in phone settings";
+      message = "You may have your bluetooth turned off. Please turn it on in phone settings";
     } else if (error.includes("authorized")) {
-      message = `App needs ${
-        Platform.OS === "ios" ? "bluetooth" : "location"
-      } permissions`;
+      message = `Application needs ${
+        Platform.OS === "ios" ? "bluetooth" : "nearby devices and location" 
+      } permissions. Please enable them in settings`;
     }
 
     return <Text style={tw("font-nunito-400 text-base py-4")}>{message}</Text>;
