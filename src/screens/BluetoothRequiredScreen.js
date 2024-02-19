@@ -12,7 +12,7 @@ const BluetoothRequiredScreen = ({ error, refetch }) => {
     let message = error;
 
     if (error.includes("powered")) {
-      message = "Bluetooth is off. Please turn it on in settings";
+      message = "Bluetooth is off. Please turn it on in phone settings";
     } else if (error.includes("authorized")) {
       message = `App needs ${
         Platform.OS === "ios" ? "bluetooth" : "location"

@@ -29,6 +29,7 @@ import Calendar from "../../components/Calendar";
 import GetOneMonth from "../../helpers/calendar/GetOneMonth";
 import * as Notifications from "expo-notifications";
 import DeviceInfo from "react-native-device-info";
+import { requestBluetoothPermission } from "../../helpers/bluetooth/RequestBluetoothPermission"
 
 const HomeScreen = () => {
   // GETS EXPO PUSH PERMISSIONS
@@ -45,6 +46,19 @@ const HomeScreen = () => {
     });
 
     return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    // Directly call the imported function
+    const checkPermissions = async () => {
+      const hasPermission = await requestBluetoothPermission();
+      if (!hasPermission) {
+        
+      }
+    };
+
+    checkPermissions();
+
   }, []);
 
   // TODO: Replace

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "photopharmics",
+    "name": "Celeste Mobile",
     "slug": "celeste",
     "version": "1.0.19",
     "privacy": "unlisted",
@@ -31,6 +31,12 @@
     },
     "android": {
       "package": "com.photopharmics.celestemobile",
+      "icon": "./assets/icon-android.png",
+      "splash": {
+        "image": "./assets/splash.png", 
+        "resizeMode": "native",
+        "backgroundColor": "#ffffff"
+      },
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
@@ -39,7 +45,7 @@
         "INTERNET"
       ],
       "googleServicesFile": "./google-services.json",
-      "versionCode": 24
+      "versionCode": 26
     },
     "web": {
       "favicon": "./assets/favicon.png"
