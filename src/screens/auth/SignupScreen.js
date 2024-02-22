@@ -172,7 +172,7 @@ const SignupScreen = () => {
     Password Requirements:
   </Text>
   <Text style={{ color: 'black' }}>
-    Minimum 6 Digit Numeric Pin
+    - Minimum 6 Digit Numeric Pin
   </Text>
 
 

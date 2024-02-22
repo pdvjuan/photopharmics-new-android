@@ -21,13 +21,13 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 
 const SettingsNotificationsScreen = () => {
   //useNotificationsPermissionQuery();
-
+  const { refetch } = useNotificationsPermissionQuery();
   const appState = useRef(AppState.currentState);
   const { state } = useAppContext();
   const expo_token = state?.user?.["custom:expo_token"];
   const email_pref = state?.user?.["custom:email_pref"];
   const text_pref = state?.user?.["custom:text_pref"];
-  const { refetch } = useNotificationsPermissionQuery();
+  
   const { mutate: updateUser, isLoading } = useUpdateUserMutation();
   const [time, setTime] = useState(new Date());
   console.log("init time, ", time);

@@ -36,7 +36,7 @@ const GetNotificationPermission = async (expo_token, dispatch) => {
       await AmplifyUpdateUser({ "custom:expo_token": token });
       await GetCurrentUser(dispatch);
       await Notifications.cancelAllScheduledNotificationsAsync();
-      await schedulePushNotification(20, 0);
+      await schedulePushNotification(18, 30);
     }
   } else {
     alert("Must use physical device for Push Notifications");

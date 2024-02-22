@@ -3,23 +3,28 @@ import { Image, Text, StyleSheet, View, Platform } from "react-native";
 import { Button } from "../base";
 import { tw } from "tailwind";
 import OpenAppSettings from "../helpers/device/OpenAppSettings";
+import OpenBTSettings from "../helpers/device/OpenBTSettings";
 import PageContainer from "./PageContainer";
 
 const BluetoothRequiredScreen = ({ error, refetch }) => {
   const [showError, setShowError] = useState(false);
-
+  let popup = null;
+  
   const getErrorMessage = () => {
     let message = error;
+    
 
     if (error.includes("powered")) {
-      message = "You may have your bluetooth turned off. Please turn it on in phone settings";
+      message = "You may have your bluetooth turned off. Please turn it on in settings.";
+      popup = OpenBTSettings;
     } else if (error.includes("authorized")) {
       message = `Application needs ${
         Platform.OS === "ios" ? "bluetooth" : "nearby devices and location" 
-      } permissions. Please enable them in settings`;
+      } permissions. Please enable them in application settings.`;
+      popup = OpenAppSettings;
     }
 
-    return <Text style={tw("font-nunito-400 text-base py-4")}>{message}</Text>;
+    return <Text style={tw('font-nunito-400 text-base py-4 text-center')}>{message}</Text> 
   };
 
   return (
@@ -36,7 +41,7 @@ const BluetoothRequiredScreen = ({ error, refetch }) => {
               style={tw("mx-1 bg-gray-500 border-gray-500")}
               textStyle={tw("text-white")}
               title="Open Settings"
-              onPress={OpenAppSettings}
+              onPress={popup}
             />
             <Button
               style={tw("mx-1")}

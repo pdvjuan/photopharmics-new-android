@@ -114,8 +114,8 @@ let userTimeZone = null;
   
   let continuousDays = 0; // Initialize to 0
   let duration = 0;
-  let length = "Loading..";
-  let recentDate = "Loading..";
+  let length = "Loading ";
+  let recentDate = "None";
   let timeLeft = 60;
 
   if (sessions && sessions.length > 0) {

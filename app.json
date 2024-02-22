@@ -33,7 +33,7 @@
       "package": "com.photopharmics.celestemobile",
       "icon": "./assets/icon-android.png",
       "splash": {
-        "image": "./assets/splash.png", 
+        "image": "./assets/icon-android.png", 
         "resizeMode": "native",
         "backgroundColor": "#ffffff"
       },
@@ -45,7 +45,7 @@
         "INTERNET"
       ],
       "googleServicesFile": "./google-services.json",
-      "versionCode": 26
+      "versionCode": 30
     },
     "web": {
       "favicon": "./assets/favicon.png"
