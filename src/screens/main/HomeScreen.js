@@ -114,9 +114,13 @@ let userTimeZone = null;
   
   let continuousDays = 0; // Initialize to 0
   let duration = 0;
-  let length = "Loading ";
+  let length = "Loading";
   let recentDate = "None";
   let timeLeft = 60;
+
+  if(!sessions){
+    length = "No"
+  }
 
   if (sessions && sessions.length > 0) {
     sessions.sort((a, b) => {
@@ -216,6 +220,8 @@ let userTimeZone = null;
       console.log('HOME: No session found for today.');
     }
   };
+
+  
 
 
 const getHeader = () => {

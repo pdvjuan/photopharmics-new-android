@@ -6,6 +6,8 @@ import { EyeIcon,EyeOffIcon } from "react-native-heroicons/outline";// Import ey
 import useSignupMutation from "../../api/cognito/mutations/useSignupMutation";
 import AuthContainer from "./AuthContainer";
 import PasswordInputField from "../../base/PasswordInputField";
+import * as Notifications from "expo-notifications";
+
 
 const INITIAL_ERRORS = {
   messages: [],
@@ -36,7 +38,7 @@ const SignupScreen = () => {
         given_name: givenName,
         family_name: familyName,
         phone_number: phoneNumber,
-        'custom:expo_token': "INIT"
+        'custom:expo_token': "token"
       },
     });
   };
