@@ -68,7 +68,9 @@ const SignupScreen = () => {
 
 
   const hasErrors = () => {
-    const _errors = { ...INITIAL_ERRORS };
+     // Reset errors state except for the messages array
+     const _errors = { ...INITIAL_ERRORS, messages: [] };
+
     if (!email) {
       _errors.messages.push("Email is required");
       _errors.email = true;
@@ -160,7 +162,7 @@ const SignupScreen = () => {
       /> */}
 
       <PasswordInputField
-        label="New Password"
+        label="Password"
         value={password}
         onChange={setPassword}
         keyboardType="numeric"
@@ -171,7 +173,7 @@ const SignupScreen = () => {
       /> 
 
 <Text style={{ color: 'black' }}>
-    Password Requirements:
+    Password Requirement:
   </Text>
   <Text style={{ color: 'black' }}>
     - Minimum 6 Digit Numeric Pin
@@ -185,6 +187,7 @@ const SignupScreen = () => {
         style={tw("mt-4")}
         textStyle={tw("text-white")}
         isLoading={isLoading}
+        disabled={isLoading}
       />
     </AuthContainer>
   );

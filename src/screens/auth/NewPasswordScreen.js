@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert } from "react-native";
+import { Alert, Text } from "react-native";
 import { InputField } from "../../base";
 import Button from "../../base/Button";
 import useForgotPasswordSubmitMutation from "../../api/cognito/mutations/useForgotPasswordSubmitMutation";
@@ -50,6 +50,14 @@ const ForgotScreen = ({ route }) => {
         passwordRules="minlength: 6;"
         password
       />
+
+      <Text style={{ color: 'black' }}>
+        Password Requirement:
+      </Text>
+      <Text style={{ color: 'black' }}>
+        - Minimum 6 Digit Numeric Pin
+      </Text>
+
       <Button
         onPress={() => handleResetPasswordBtn()}
         title="Reset Password"

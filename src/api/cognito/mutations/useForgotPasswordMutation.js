@@ -14,14 +14,24 @@ const useForgotPasswordMutation = (email) => {
     onSuccess: () => {
       Alert.alert(
         "Code Sent",
-        "A new code has been sent to your mobile phone."
+        `A new code has been sent to ${email}.`
       );
       navigate("NewPassword", { email });
     },
     onError: ({ code, message }) => {
-      code === "UserNotFoundException"
-        ? Alert.alert("Invalid Email", "Code not sent.")
-        : Alert.alert("Failed To Send Code", message);
+      console.log("Code", code);
+      console.log("message", message);
+      switch (code) {
+        case "UserNotFoundException":
+            Alert.alert("Invalid Email", "Code not sent.");
+            break;
+        case "InvalidParameterException":
+            Alert.alert("Invalid Email", "An email cannot have empty spaces. Code not sent.");
+            break;
+        default:
+            Alert.alert("Failed To Send Code", message);
+            break;
+      };
     },
   });
 };

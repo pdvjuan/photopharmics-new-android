@@ -50,6 +50,7 @@ const SigninScreen = ({ route }) => {
         value={code}
         onChange={setCode}
         textContentType="oneTimeCode"
+        keyboardType="numeric"
       />
       <Button
         title={"Confirm Code"}

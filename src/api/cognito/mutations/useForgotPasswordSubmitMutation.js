@@ -17,9 +17,19 @@ const useForgotPasswordSubmitMutation = () => {
       navigate("Signin");
     },
     onError: ({ code, message }) => {
-      code === "CodeMismatchException"
-        ? Alert.alert("Invalid Code", "Please enter a valid code.")
-        : Alert.alert("Failed To Reset Password", message);
+      console.log("Code", code);
+      console.log("message", message);
+      switch (code) {
+        case "CodeMismatchException":
+            Alert.alert("Invalid Code", "Please enter a valid code.");
+            break;
+        case "InvalidParameterException":
+            Alert.alert("Invalid Code", "Code cannot have any spaces. Please enter a valid code.");
+            break;
+        default:
+            Alert.alert("Failed To Reset Password", message);
+            break;
+    };
     },
   });
 };

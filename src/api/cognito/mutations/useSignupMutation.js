@@ -29,7 +29,7 @@ const onSuccess = (response) => {
 const formatPhoneNumber = (phoneNumberString) => {
   var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
   if (cleaned.length !== 10)
-    throw Error("Invalid phone number. Please enter only numbers.");
+    throw Error("Invalid phone number. Please enter only 10 digit phone number.");
   var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
   if (match) {
     var intlCode = "+1";
