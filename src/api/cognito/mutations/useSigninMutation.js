@@ -21,17 +21,23 @@ const useSigninMutation = () => {
 
 const onError = (error) => {
   const { code, message } = error;
-  if (code === "UserNotConfirmedException") {
-    Alert.alert("Account is not confirmed");
-    navigate("ConfirmCode");
-  } else if (code === "UserNotFoundException") {
-    Alert.alert(
-      "This username does not exist.",
-      "Please enter a different username."
-    );
-  } else if (code === "NotAuthorizedException") {
-    Alert.alert("Incorrect password");
-  } else Alert.alert("Failed to sign in", message);
+  switch (code) {
+    case "UserNotConfirmedException":
+      Alert.alert("Account is not confirmed", "Please contact support.");
+      navigate("ConfirmCode");
+      break;
+    case "UserNotFoundException":
+      Alert.alert("This username does not exist.", "Please enter a different username.");
+      break;
+    case "NotAuthorizedException":
+      Alert.alert("Failed to sign in", "Incorrect password or email was not verified");
+      break;
+    case "InvalidParameterException":
+      Alert.alert("Invalid Email", "An email cannot have empty spaces. Please enter a different username.");
+      break;
+    default:
+      Alert.alert("Failed to sign in", message);
+  }
 };
 
 export default useSigninMutation;

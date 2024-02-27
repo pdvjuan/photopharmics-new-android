@@ -30,29 +30,31 @@ const SettingsInfoScreen = () => {
     useUpdateUserMutation();
 
   const handlePasswordUpdate = () => {
-    updatePassword({ oldPassword, newPassword });
-    setOldPassword("");
-    setNewPassword("");
+    if (!oldPassword) Alert.alert("Error","Please enter old password");
+    else if (!newPassword) Alert.alert("Error","Please enter a new password");
+    else {
+      updatePassword({ oldPassword, newPassword });
+      setOldPassword("");
+      setNewPassword("");
+    }
   };
 
   const handleSaveBtn = () => {
-    if (!givenName) Alert.alert("Please enter a first name");
-    else if (!familyName) Alert.alert("Please enter a last name");
-    else
-      updateUser({
-        given_name: givenName,
-        family_name: familyName,
-        gender,
-      });
+    updateUser({
+      given_name: givenName || " ",
+      family_name: familyName || " ", 
+      gender: gender || " ", 
+    });
   };
 
   return (
-    <PageContainer noHeader>
-      <KeyboardAvoidingView
+    <KeyboardAvoidingView
         style={tw("flex-1")}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={tw("px-4")}>
+        <PageContainer noHeader>
+      
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={tw("px-4")} keyboardShouldPersistTaps='handled'>
           <View>
             <Text
               style={tw(
@@ -127,6 +129,15 @@ const SettingsInfoScreen = () => {
               passwordRules="minlength: 6;"
               password
             />
+
+            <Text style={{ color: 'black' }}>
+              Password Requirement:
+            </Text>
+            <Text style={{ color: 'black' }}>
+              - Minimum 6 Digit Numeric Pin
+            </Text>
+
+
             <Button
               title={"Update Password"}
               onPress={handlePasswordUpdate}
@@ -136,8 +147,9 @@ const SettingsInfoScreen = () => {
             />
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      
     </PageContainer>
+    </KeyboardAvoidingView>
   );
 };
 
