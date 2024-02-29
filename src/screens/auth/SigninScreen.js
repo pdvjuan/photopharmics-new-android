@@ -14,11 +14,17 @@ const SigninScreen = ({ navigation }) => {
   const { mutate: signIn, isLoading } = useSignInMutation();
   const { dispatch } = useAppContext();
 
+   // username validation function
+   const validateUsername = (username) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@"]+\.)+[^<>()[\]\\.,;:\s@"]{2,})$/i;
+    return re.test(String(username).toLowerCase());
+  };
+
   const handleSigninBtn = () => {
-    if (!username) {
-      Alert.alert("Please enter your username");
+    if (!validateUsername(username)) {
+      Alert.alert("Error","Please enter a valid email.");
     } else if (!password) {
-      Alert.alert("Please enter your password");
+      Alert.alert("Error","Please enter a valid password");
     } else signIn({ username, password });
   };
 
@@ -30,9 +36,9 @@ const SigninScreen = ({ navigation }) => {
       footerNav="Signup"
     >
       <InputField
-        label="Username (email)"
+        label="Email"
         value={username}
-        onChange={setUsername}
+        onChange={(text) => setUsername(text)}
         textContentType="username"
         onFocus={() => setFocus(null)}
         onSubmitEditing={() => setFocus("password")}

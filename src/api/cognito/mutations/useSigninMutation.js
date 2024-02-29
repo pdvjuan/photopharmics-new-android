@@ -27,13 +27,13 @@ const onError = (error) => {
       navigate("ConfirmCode");
       break;
     case "UserNotFoundException":
-      Alert.alert("This username does not exist.", "Please enter a different username.");
+      Alert.alert("This email does not exist.", "Please enter a different email.");
       break;
     case "NotAuthorizedException":
       Alert.alert("Failed to sign in", "Incorrect password or email was not verified");
       break;
     case "InvalidParameterException":
-      Alert.alert("Invalid Email", "An email cannot have empty spaces. Please enter a different username.");
+      Alert.alert("Invalid Email", "An email cannot have empty spaces. Please enter a different email.");
       break;
     default:
       Alert.alert("Failed to sign in", message);

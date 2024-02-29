@@ -14,6 +14,8 @@ import useUpdateUserMutation from "../../../api/cognito/mutations/useUpdateUserM
 import PageContainer from "../../PageContainer";
 import useUpdatePasswordMutation from "../../../api/cognito/mutations/useUpdatePasswordMutation";
 import PasswordInputField from "../../../base/PasswordInputField";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 const SettingsInfoScreen = () => {
   const { state } = useAppContext();
@@ -47,14 +49,20 @@ const SettingsInfoScreen = () => {
     });
   };
 
-  return (
-    <KeyboardAvoidingView
+  return ( 
+    <PageContainer noHeader>
+      <KeyboardAvoidingView
         style={tw("flex-1")}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <PageContainer noHeader>
-      
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={tw("px-4")} keyboardShouldPersistTaps='handled'>
+        <KeyboardAwareScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          style={tw("px-4")}
+          resetScrollToCoords={{ x: 0, y: 0 }}
+          scrollEnabled={true}
+          keyboardShouldPersistTaps="handled"
+        >
+        {/* <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={tw("px-4")} keyboardShouldPersistTaps='handled'> */}
           <View>
             <Text
               style={tw(
@@ -146,10 +154,12 @@ const SettingsInfoScreen = () => {
               isLoading={updatePasswordLoading}
             />
           </View>
-        </ScrollView>
-      
+        {/* </ScrollView> */}
+        
+        </KeyboardAwareScrollView>
+      </KeyboardAvoidingView>
     </PageContainer>
-    </KeyboardAvoidingView>
+    
   );
 };
 

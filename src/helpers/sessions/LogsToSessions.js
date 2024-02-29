@@ -235,7 +235,7 @@ const LogsToSessions = (logs) => {
     
     if (comparisonEndDate > cutOffDate && comparisonStartDate > cutOffDate) {
         const timeDifferenceInMilliseconds = timeEnd - timeStart;
-        const timeDifferenceInMinutes = Math.floor(timeDifferenceInMilliseconds / (1000 * 60));
+        const timeDifferenceInMinutes = timeDifferenceInMilliseconds / (1000 * 60);
         duration = timeDifferenceInMinutes;
     } else {
         duration = timeEnd.diff(timeStart, "minutes");
