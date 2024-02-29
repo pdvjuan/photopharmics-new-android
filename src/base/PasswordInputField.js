@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { EyeIcon, EyeOffIcon } from 'react-native-heroicons/outline'; // Make sure to have these icons from your icons library
+import { EyeIcon, EyeOffIcon } from 'react-native-heroicons/outline';
+import { tw } from 'tailwind'; 
 
 const PasswordInputField = ({
   label,
@@ -17,14 +18,24 @@ const PasswordInputField = ({
   autoFocus,
   blurOnSubmit,
   onFocus,
+  focus
 }) => {
   const inputRef = useRef();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
+  useEffect(() => {
+    if (focus) inputRef.current.focus();
+  }, [focus])
+
   return (
-    <View style={[styles.container, style]}>
-      {label && <Text style={styles.label}>{label}</Text>}
-      <View style={styles.inputContainer}>
+    <View style={[tw("py-1"), style]}>
+      {label && <Text style={tw("font-nunito-400 text-base text-celeste-darkgray")}>{label}</Text>}
+      <View style={[
+          tw("flex-row items-center border-2 border-gray-300 rounded"),
+          disabled && tw("bg-gray-100"),
+          error && tw("border-red-400"),
+          styles.inputContainer, 
+      ]}>
         <TextInput
           value={value}
           onChangeText={onChange}
@@ -39,56 +50,33 @@ const PasswordInputField = ({
           autoFocus={autoFocus}
           blurOnSubmit={blurOnSubmit}
           ref={inputRef}
-          style={[
-            styles.input,
-            disabled && styles.disabledInput,
-            error && styles.errorInput,
-          ]}
+          style={[tw("flex-1 text-xl p-2"), styles.input]} 
         />
         <TouchableOpacity
           onPress={() => setIsPasswordVisible(prevState => !prevState)}
           style={styles.icon}
         >
-          {isPasswordVisible ? (
-            <EyeOffIcon color="gray" /> // Use your preferred color or style
-          ) : (
-            <EyeIcon color="gray" /> // Use your preferred color or style
-          )}
+          {isPasswordVisible ? <EyeOffIcon color="gray" /> : <EyeIcon color="gray" />}
         </TouchableOpacity>
       </View>
     </View>
   );
 };
 
+
 const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 8,
-  },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#000',
-    borderRadius: 5,
   },
   input: {
-    flex: 1,
     fontSize: 16,
-    padding: 10,
   },
   icon: {
     padding: 10,
   },
   label: {
-    fontSize: 16,
-    color: '#000',
     marginBottom: 5,
-  },
-  disabledInput: {
-    backgroundColor: '#f0f0f0',
-  },
-  errorInput: {
-    borderColor: '#ff0000',
   },
 });
 

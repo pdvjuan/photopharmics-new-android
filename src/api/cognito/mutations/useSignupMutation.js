@@ -13,7 +13,7 @@ const AmplifySignUp = async (config) => {
 const useSignupMutation = () => {
   return useMutation(AmplifySignUp, {
     onSuccess: onSuccess,
-    onError: ({ message }) => Alert.alert("Failed to Sign Up", message),
+    onError: ({code, message }) => Alert.alert(code, message),
   });
 };
 

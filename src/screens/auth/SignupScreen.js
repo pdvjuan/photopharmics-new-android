@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { tw } from "tailwind";
-import { View,Text, TextInput,TouchableOpacity,StyleSheet} from "react-native";
-import { Button, InputField, ToggleButtons } from "../../base"; 
-import { EyeIcon,EyeOffIcon } from "react-native-heroicons/outline";// Import eye icons from a suitable library
+import { Text, Alert} from "react-native";
+import { Button, InputField} from "../../base"; 
 import useSignupMutation from "../../api/cognito/mutations/useSignupMutation";
 import AuthContainer from "./AuthContainer";
 import PasswordInputField from "../../base/PasswordInputField";
-import * as Notifications from "expo-notifications";
 
 
 const INITIAL_ERRORS = {
@@ -31,6 +29,17 @@ const SignupScreen = () => {
 
   const handleSignUpBtn = () => {
     if (hasErrors()) return;
+
+    if (!validateEmail(email)) {
+      Alert.alert("Invalid Email", "Please enter a valid email address.");
+      return;
+    } 
+
+    if (!validatePhoneNumber(phoneNumber)) {
+      Alert.alert("Invalid Phone Number", "Please enter a valid 10 digit phone number.");
+      return;
+    } 
+
     signUp({
       username: email,
       password,
@@ -41,31 +50,20 @@ const SignupScreen = () => {
         'custom:expo_token': "token"
       },
     });
+    
   };
 
-  const styles = StyleSheet.create({
-    input: {
-      height: 50, // Set the height of the input
-      borderWidth: 1, // Width of the border around the input
-      borderColor: '#000', // Color of the border, adjust as needed
-      padding: 10, // Padding inside the input
-      fontSize: 16, // Adjust the font size as needed
-      borderRadius: 5, // Radius of the corner of the border
-    },
-    label: {
-      fontSize: 16, // Set the size of the label text
-      color: '#000', // Color of the label text, adjust as needed
-      marginBottom: 5, // Space between the label and the input field
-    },
-    container: {
-      marginTop:10,
-      marginBottom: 10
-    },
-  });
+  // Email validation function
+  const validateEmail = (email) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@"]+\.)+[^<>()[\]\\.,;:\s@"]{2,})$/i;
+    return re.test(String(email).toLowerCase());
+  };
 
- // State variable to track password visibility 
- const [showPassword, setShowPassword] = useState(false); 
-
+  // Phone number validation function
+  const validatePhoneNumber = (phoneNumber) => {
+    const re = /^\d{10}$/;
+    return re.test(String(phoneNumber));
+  };
 
   const hasErrors = () => {
      // Reset errors state except for the messages array
@@ -87,10 +85,7 @@ const SignupScreen = () => {
       _errors.messages.push("Phone Number is required");
       _errors.phoneNumber = true;
     }
-    // if (!gender) {
-    //   _errors.messages.push("Gender is required");
-    //   _errors.gender = true;
-    // }
+
     if (!password) {
       _errors.messages.push("Password is required");
       _errors.password = true;
@@ -141,6 +136,7 @@ const SignupScreen = () => {
         onSubmitEditing={() => setFocus("phoneNumber")}
         onFocus={() => setFocus(null)}
       />
+
       <InputField
         label="Phone Number"
         value={phoneNumber}
@@ -148,9 +144,35 @@ const SignupScreen = () => {
         error={errors.phoneNumber}
         textContentType="telephoneNumber"
         focus={focus === "phoneNumber"}
+        onSubmitEditing={() => setFocus("password")}
         onFocus={() => setFocus(null)}
         keyboardType="phone-pad"
       />
+      <Text style={{ color: 'black' }}>
+        Phone Number Requirement:
+      </Text>
+      <Text style={{ color: 'black' }}>
+        - 10 Digit Number
+      </Text>
+
+      <PasswordInputField
+        label="Password"
+        value={password}
+        focus={ focus === "password"}
+        onChange={setPassword}
+        keyboardType="numeric"
+        textContentType="newPassword"
+        error={errors.password}
+        passwordRules="minlength: 6;"
+        password
+      /> 
+
+      <Text style={{ color: 'black' }}>
+        Password Requirement:
+      </Text>
+      <Text style={{ color: 'black' }}>
+        - Minimum 6 Digit Numeric Pin
+      </Text>
 
       {/* <ToggleButtons
         label="Gender (Optional)"
@@ -160,26 +182,6 @@ const SignupScreen = () => {
         onPress={setGender}
         error={errors.gender}
       /> */}
-
-      <PasswordInputField
-        label="Password"
-        value={password}
-        onChange={setPassword}
-        keyboardType="numeric"
-        textContentType="newPassword"
-        error={errors.password}
-        passwordRules="minlength: 6;"
-        password
-      /> 
-
-<Text style={{ color: 'black' }}>
-    Password Requirement:
-  </Text>
-  <Text style={{ color: 'black' }}>
-    - Minimum 6 Digit Numeric Pin
-  </Text>
-
-
 
       <Button
         title={"Sign Up"}
