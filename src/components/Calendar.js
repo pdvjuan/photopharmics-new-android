@@ -27,7 +27,7 @@ const Calendar = ({ monthDate, sessions }) => {
       ]}
     >
       <Text style={tw("font-nunito-400 text-center text-2xl py-2")}>
-        {moment(monthDate).format("MMMM")}
+        {moment(monthDate).format("MMMM")} {moment(monthDate).format("YYYY")}
       </Text>
       <View style={tw("flex-row flex-wrap")}>
         {dates.map((date) => (

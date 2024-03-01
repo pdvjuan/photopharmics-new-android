@@ -56,8 +56,8 @@ const AuthContainer = ({
                   navigate(footerNav);
                 }}
                 title={footerBtnText}
-                style={tw("bg-gray-300 border-gray-300")}
-                textStyle={tw("text-celeste-darkgray")}
+                style={tw("bg-celeste-blue border-celeste-blue")}
+                textStyle={tw("text-white")}
               />
             </View>
           </View>

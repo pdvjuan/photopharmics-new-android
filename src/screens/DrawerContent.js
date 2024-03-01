@@ -23,7 +23,7 @@ const DrawerContent = ({ state, navigation, signOut }) => {
   };
 
   const handleLogout = () => {
-    Alert.alert("Are you sure you want to logout?", null, [
+    Alert.alert("Are you sure you want to sign out?",null,  [
       { text: "Cancel", style: "cancel" },
       { text: "Sign Out", onPress: signOut },
     ]);
@@ -96,7 +96,7 @@ const DrawerContent = ({ state, navigation, signOut }) => {
           <Text
             style={tw("font-nunito-700 text-celeste-blue text-center text-2xl")}
           >
-            LOG OUT
+            SIGN OUT
           </Text>
         </TouchableOpacity>
       </View>

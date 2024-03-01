@@ -100,7 +100,7 @@ const SignupScreen = () => {
   return (
     <AuthContainer
       headerText="Please sign up"
-      footerText="Already have an account"
+      footerText="Already have an account?"
       footerBtnText="Sign In"
       footerNav="Signin"
     >
@@ -116,7 +116,7 @@ const SignupScreen = () => {
         keyboardType="email-address"
       />
       <InputField
-        label="First Name (Optional)"
+        label="First name (Optional)"
         value={givenName}
         onChange={setGivenName}
         error={errors.givenName}
@@ -127,7 +127,7 @@ const SignupScreen = () => {
         blurOnSubmit={false}
       />
       <InputField
-        label="Last Name (Optional)"
+        label="Last name (Optional)"
         value={familyName}
         onChange={setFamilyName}
         error={errors.familyName}
@@ -138,7 +138,7 @@ const SignupScreen = () => {
       />
 
       <InputField
-        label="Phone Number"
+        label="Phone number"
         value={phoneNumber}
         onChange={setPhoneNumber}
         error={errors.phoneNumber}
@@ -149,10 +149,10 @@ const SignupScreen = () => {
         keyboardType="phone-pad"
       />
       <Text style={{ color: 'black' }}>
-        Phone Number Requirement:
+        Phone number requirement:
       </Text>
       <Text style={{ color: 'black' }}>
-        - 10 Digit Number
+        - 10 digit number
       </Text>
 
       <PasswordInputField
@@ -168,10 +168,10 @@ const SignupScreen = () => {
       /> 
 
       <Text style={{ color: 'black' }}>
-        Password Requirement:
+        Password requirement:
       </Text>
       <Text style={{ color: 'black' }}>
-        - Minimum 6 Digit Numeric Pin
+        - Minimum 6 digit numeric pin
       </Text>
 
       {/* <ToggleButtons

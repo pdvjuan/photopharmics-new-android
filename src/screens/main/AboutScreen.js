@@ -63,8 +63,8 @@ const AboutScreen = () => {
         "flex flex-row justify-between items-center border-b border-gray-200 py-2"
       )}
     >
-      <View>
-        <Text selectable={true} style={tw("text-celeste-blue text-lg")}>{email}</Text>
+      <View style={tw("flex flex-row items-center")}>
+        <Text selectable={true} style={tw("text-celeste-blue text-xs mx-2")}>{email}</Text>
       </View>
     </View>
 
