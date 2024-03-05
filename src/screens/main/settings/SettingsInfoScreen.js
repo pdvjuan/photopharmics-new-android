@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
-  ScrollView,
   Platform,
   KeyboardAvoidingView,
   View,
@@ -8,7 +7,8 @@ import {
   Alert,
 } from "react-native";
 import { tw } from "tailwind";
-import { Button, InputField, ToggleButtons } from "../../../base";
+import { Button, InputField} from "../../../base";
+import { useFocusEffect } from '@react-navigation/native';
 import { useAppContext } from "../../../context/AppContext";
 import useUpdateUserMutation from "../../../api/cognito/mutations/useUpdateUserMutation";
 import PageContainer from "../../PageContainer";
@@ -30,6 +30,16 @@ const SettingsInfoScreen = () => {
     useUpdatePasswordMutation();
   const { mutate: updateUser, isLoading: updateUserLoading } =
     useUpdateUserMutation();
+
+  const scrollViewRef = useRef();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      if (scrollViewRef.current) {
+        scrollViewRef.current.scrollToPosition(0, 0, false);
+      }
+    }, [])
+  );
 
   const handlePasswordUpdate = () => {
     if (!oldPassword) Alert.alert("Error","Please enter old password");
@@ -61,6 +71,7 @@ const SettingsInfoScreen = () => {
           resetScrollToCoords={{ x: 0, y: 0 }}
           scrollEnabled={true}
           keyboardShouldPersistTaps="handled"
+          ref={scrollViewRef}
         >
         {/* <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={tw("px-4")} keyboardShouldPersistTaps='handled'> */}
           <View>

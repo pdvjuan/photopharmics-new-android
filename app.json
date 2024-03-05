@@ -43,13 +43,20 @@
         "INTERNET"
       ],
       "googleServicesFile": "./google-services.json",
-      "versionCode": 35
+      "versionCode": 36
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "@config-plugins/react-native-ble-plx"
+      "@config-plugins/react-native-ble-plx",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#ffffff"
+        }
+      ]
     ],
     "entryPoint": "node_modules/expo/AppEntry.js",
     "extra": {
