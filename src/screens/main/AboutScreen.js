@@ -36,7 +36,7 @@ const AboutScreen = () => {
     >
       <View style={tw("flex flex-row items-center")}>
 
-        <Text style={tw("text-gray-500 text-lg mx-2")}>Phone Number</Text>
+        <Text style={tw("text-gray-500 text-lg mx-2")}>Tap here for phone number</Text>
       </View>
       <View>
         <Text style={tw("text-celeste-blue text-lg")}>{phoneNumber}</Text>
@@ -52,7 +52,7 @@ const AboutScreen = () => {
       )}
     >
       <View style={tw("flex flex-row items-center")}>
-        <Text style={tw("text-gray-500 text-lg mx-2")}>Tap for email</Text>
+        <Text style={tw("text-gray-500 text-lg mx-2")}>Tap here for email</Text>
       </View>
       
     </View>

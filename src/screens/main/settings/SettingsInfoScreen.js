@@ -4,7 +4,7 @@ import {
   KeyboardAvoidingView,
   View,
   Text,
-  Alert,
+  Alert, ScrollView
 } from "react-native";
 import { tw } from "tailwind";
 import { Button, InputField} from "../../../base";
@@ -20,7 +20,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 const SettingsInfoScreen = () => {
   const { state } = useAppContext();
   const { user } = state;
-
+  const [focus, setFocus] = useState(null);
   const [givenName, setGivenName] = useState(user.given_name);
   const [familyName, setFamilyName] = useState(user.family_name);
   const [gender, setGender] = useState(user.gender);
@@ -61,17 +61,17 @@ const SettingsInfoScreen = () => {
 
   return ( 
     <PageContainer noHeader>
-      <KeyboardAvoidingView
+      {/* <KeyboardAvoidingView
         style={tw("flex-1")}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
+      > */}
         <KeyboardAwareScrollView
           contentContainerStyle={{ flexGrow: 1 }}
+          behavior = {null}
           style={tw("px-4")}
           resetScrollToCoords={{ x: 0, y: 0 }}
           scrollEnabled={true}
           keyboardShouldPersistTaps="handled"
-          ref={scrollViewRef}
         >
         {/* <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={tw("px-4")} keyboardShouldPersistTaps='handled'> */}
           <View>
@@ -102,12 +102,16 @@ const SettingsInfoScreen = () => {
               value={givenName}
               onChange={setGivenName}
               textContentType="givenName"
+              onFocus={() => setFocus(null)}
+              onSubmitEditing={() => setFocus("familyName")}
             />
             <InputField
               label="Last Name"
               value={familyName}
               onChange={setFamilyName}
               textContentType="familyName"
+              focus={focus === "familyName"}
+              onFocus={() => setFocus(null)}
             />
             {/* <ToggleButtons
               label="Gender"
@@ -138,6 +142,8 @@ const SettingsInfoScreen = () => {
               onChange={setOldPassword}
               textContentType="password"
               password
+              onSubmitEditing={() => setFocus("newPassword")}
+              onFocus={() => setFocus(null)}
             />
             <PasswordInputField
               label="New Password"
@@ -147,6 +153,8 @@ const SettingsInfoScreen = () => {
               textContentType="newPassword"
               passwordRules="minlength: 6;"
               password
+              focus={focus === "newPassword"}
+              onFocus={() => setFocus(null)}
             />
 
             <Text style={{ color: 'black' }}>
@@ -168,7 +176,7 @@ const SettingsInfoScreen = () => {
         {/* </ScrollView> */}
         
         </KeyboardAwareScrollView>
-      </KeyboardAvoidingView>
+      {/* </KeyboardAvoidingView> */} 
     </PageContainer>
     
   );
