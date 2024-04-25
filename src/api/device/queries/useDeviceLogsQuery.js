@@ -7,7 +7,7 @@ import LogsToSessions from "../../../helpers/sessions/LogsToSessions";
 const GetDeviceLogs = ({ device }) => {
   return new Promise(async (resolve, reject) => {
     const timer = setTimeout(() => {
-      reject(Error("TIMEOUT: Please contact us"));
+      reject(Error("TIMEOUT: Please make sure you have stable internet connection and are close to device. If issue persists, please contact us."));
     }, 30000);
 
     const characteristics = await GetCharacteristics(device);

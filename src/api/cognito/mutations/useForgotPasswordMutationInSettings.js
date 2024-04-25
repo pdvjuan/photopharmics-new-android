@@ -1,7 +1,6 @@
 import { Alert } from "react-native";
 import { useMutation } from "react-query";
 import { Auth } from "@aws-amplify/auth";
-import { navigate } from "../../../helpers/navgationRef";
 
 const AmplifyForgotPassword = async ({ username }) => {
   await Auth.forgotPassword(username);
@@ -16,7 +15,6 @@ const useForgotPasswordMutation = (email) => {
         "Code Sent",
         `A new code has been sent to ${email}.`
       );
-      navigate("NewPassword", { email });
     },
     onError: ({ code, message }) => {
       console.log("Code", code);

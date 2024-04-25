@@ -19,7 +19,7 @@ const GetNotificationPermission = async (expo_token, dispatch) => {
     }
     if (finalStatus !== "granted") {
       if (finalStatus === "denied" && expo_token) {
-        await AmplifyUpdateUser({ "custom:expo_token": "" });
+        await AmplifyUpdateUser({ "custom:expo_token": "None" });
         await GetCurrentUser(dispatch);
         await Notifications.cancelAllScheduledNotificationsAsync();
       }
@@ -31,12 +31,13 @@ const GetNotificationPermission = async (expo_token, dispatch) => {
         projectId: "@axialabs/celeste",
       })
     ).data;
+    console.log("Old token", state?.user?.["custom:expo_token"]);
     console.info("NEW TOKEN:", token); // DEBUG_VAL: THIS VALUE CAN BE USED HERE https://expo.dev/notifications
     if (expo_token !== token) {
       await AmplifyUpdateUser({ "custom:expo_token": token });
       await GetCurrentUser(dispatch);
       await Notifications.cancelAllScheduledNotificationsAsync();
-      await schedulePushNotification(20, 0);
+      await schedulePushNotification(18, 30);
     }
   } else {
     alert("Must use physical device for Push Notifications");

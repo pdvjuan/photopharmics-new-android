@@ -29,6 +29,7 @@ import Calendar from "../../components/Calendar";
 import GetOneMonth from "../../helpers/calendar/GetOneMonth";
 import * as Notifications from "expo-notifications";
 import DeviceInfo from "react-native-device-info";
+import { requestBluetoothPermission } from "../../helpers/bluetooth/RequestBluetoothPermission"
 
 const HomeScreen = () => {
   // GETS EXPO PUSH PERMISSIONS
@@ -45,6 +46,19 @@ const HomeScreen = () => {
     });
 
     return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    // Directly call the imported function
+    const checkPermissions = async () => {
+      const hasPermission = await requestBluetoothPermission();
+      if (!hasPermission) {
+        
+      }
+    };
+
+    checkPermissions();
+
   }, []);
 
   // TODO: Replace
@@ -100,9 +114,13 @@ let userTimeZone = null;
   
   let continuousDays = 0; // Initialize to 0
   let duration = 0;
-  let length = "Loading..";
-  let recentDate = "Loading..";
+  let length = "Loading";
+  let recentDate = "None";
   let timeLeft = 60;
+
+  if(!sessions){
+    length = "No"
+  }
 
   if (sessions && sessions.length > 0) {
     sessions.sort((a, b) => {
@@ -202,6 +220,8 @@ let userTimeZone = null;
       console.log('HOME: No session found for today.');
     }
   };
+
+  
 
 
 const getHeader = () => {
@@ -340,16 +360,16 @@ const getHeader = () => {
         
         <View style={tw("flex-1 flex-row items-center justify-between")}>
           <View style={tw("flex-row items-center")}>
-            <XCircleIcon color={getColor("red-500")} size={24} />
-            <Text style={tw("font-nunito-400 pl-2")}>0 - 29 min</Text>
+            <XCircleIcon color={getColor("red-500")} size={20} />
+            <Text style={tw("font-nunito-400 pl-1")}>0 - 29 mins</Text>
           </View>
           <View style={tw("flex-row items-center")}>
-            <ExclamationCircleIcon color={getColor("yellow-500")} size={24} />
-            <Text style={tw("font-nunito-400 pl-2")}>30 - 44 min</Text>
+            <ExclamationCircleIcon color={getColor("yellow-500")} size={20} />
+            <Text style={tw("font-nunito-400 pl-1")}>30 - 44 mins</Text>
           </View>
           <View style={tw("flex-row items-center")}>
-            <CheckCircleIcon color={getColor("green-500")} size={24} />
-            <Text style={tw("font-nunito-400 pl-2")}>45 - 60 min</Text>
+            <CheckCircleIcon color={getColor("green-500")} size={20} />
+            <Text style={tw("font-nunito-400 pl-1")}>45 - 60 mins</Text>
           </View>
         </View>
 

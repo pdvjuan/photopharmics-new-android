@@ -43,6 +43,7 @@ const InputField = ({
         autoCompleteType={autoCompleteType}
         style={[
           tw("text-xl p-2 border-2 border-gray-300 rounded"),
+          { textAlign: 'left'},
           disabled && tw("bg-gray-100"),
           error && tw("border-red-400"),
         ]}

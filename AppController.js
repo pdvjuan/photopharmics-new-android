@@ -9,6 +9,7 @@ import * as Notifications from "expo-notifications";
 import WelcomeScreen from "./src/screens/onboarding/WelcomeScreen";
 import RecordSessionWalkthroughScreen from "./src/screens/onboarding/RecordSessionWalkthroughScreen";
 import SyncWalkthroughScreen from "./src/screens/onboarding/SyncWalkthroughScreen";
+import storage from "./src/api/device/localStorage";
 
 // FONTS
 import {
@@ -31,6 +32,7 @@ import SignupScreen from "./src/screens/auth/SignupScreen";
 import ForgotScreen from "./src/screens/auth/ForgotScreen";
 import NewPasswordScreen from "./src/screens/auth/NewPasswordScreen";
 import ConfirmCodeScreen from "./src/screens/auth/ConfirmCodeScreen";
+import AutoSignInScreen from './src/screens/auth/SigninScreenAuto';
 // MAIN SCREENS
 import HomeScreen from './src/screens/main/HomeScreen';
 import ArticleScreen from "./src/screens/main/ArticleScreen";
@@ -45,13 +47,26 @@ import { Platform } from "react-native";
 const AuthStack = createStackNavigator();
 const MainStack = createDrawerNavigator();
 const OnboardingStack = createStackNavigator();
+let trigger = false;
 
+  // Loading data
+  storage.load({
+    key: 'signUpTrigger'
+  }).then(signUpTrigger => {
+    console.log('Loaded signUptrigger:', signUpTrigger);
+    trigger = signUpTrigger;
+  }).catch(err => {
+    console.warn('Failed to signUptrigger:', err.message);
+  });
+  
 export default () => {
   const { state } = useAppContext();
   const { mutate: signOut } = useSignoutMutation();
   const { authenticated, bluetooth } = state;
   const notificationListener = useRef();
   const responseListener = useRef();
+
+
 
   useEffect(() => {
     // This listener is fired whenever a notification is received while the app is foregrounded
@@ -134,14 +149,15 @@ export default () => {
         )
       ) : (
         <AuthStack.Navigator
-          initialRouteName="Signin"
+          initialRouteName= {trigger ? "ConfirmCode" : "Signin"}
           screenOptions={{ headerShown: false }}
         >
-          <AuthStack.Screen name="Signin" component={SigninScreen} />
+          <AuthStack.Screen name="Signin" component={SigninScreen} options={{ unmountOnBlur: true }}/>
           <AuthStack.Screen name="Signup" component={SignupScreen} />
           <AuthStack.Screen name="Forgot" component={ForgotScreen} />
           <AuthStack.Screen name="NewPassword" component={NewPasswordScreen} />
           <AuthStack.Screen name="ConfirmCode" component={ConfirmCodeScreen} />
+          <AuthStack.Screen name="AutoSignin" component={AutoSignInScreen}/>
         </AuthStack.Navigator>
       )}
     </NavigationContainer>

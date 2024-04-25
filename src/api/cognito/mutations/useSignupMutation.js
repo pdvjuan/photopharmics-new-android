@@ -2,8 +2,12 @@ import { Auth } from "@aws-amplify/auth";
 import { Alert } from "react-native";
 import { useMutation } from "react-query";
 import { navigate } from "../../../helpers/navgationRef";
+import storage from "../../device/localStorage";
+
+let pw;
 
 const AmplifySignUp = async (config) => {
+  pw = config?.password;
   config.attributes.phone_number = formatPhoneNumber(
     config?.attributes?.phone_number
   );
@@ -13,7 +17,7 @@ const AmplifySignUp = async (config) => {
 const useSignupMutation = () => {
   return useMutation(AmplifySignUp, {
     onSuccess: onSuccess,
-    onError: ({ message }) => Alert.alert("Failed to Sign Up", message),
+    onError: ({code, message }) => Alert.alert(code, message),
   });
 };
 
@@ -22,14 +26,30 @@ const onSuccess = (response) => {
     Alert.alert("Sign Up Successful. Please Login");
     navigate("Signin");
   } else {
-    navigate("ConfirmCode", { username: response?.user?.username });
+    storage.save({
+      key: 'usernameSaved',
+      data: response?.user?.username
+    });
+    storage.save({
+      key: 'passwordSaved',
+      data: pw
+    });
+    storage.save({
+      key: 'signUpTrigger',
+      data: true
+    });
+
+    console.log("username: ", response?.user?.username);
+    console.log("pw: ", pw);
+
+    navigate("ConfirmCode", { username: response?.user?.username, password: pw });
   }
 };
 
 const formatPhoneNumber = (phoneNumberString) => {
   var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
   if (cleaned.length !== 10)
-    throw Error("Invalid phone number. Please enter only numbers.");
+    throw Error("Invalid phone number. Please enter only 10 digit phone number.");
   var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
   if (match) {
     var intlCode = "+1";

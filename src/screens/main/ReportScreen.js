@@ -47,16 +47,16 @@ export default function Reports() {
       >
         <View style={tw("flex-1 flex-row items-center justify-between")}>
           <View style={tw("flex-row items-center")}>
-            <XCircleIcon color={getColor("red-500")} size={24} />
-            <Text style={tw("font-nunito-400 text-xs pl-2")}>0 - 29 min</Text>
+            <XCircleIcon color={getColor("red-500")} size={20} />
+            <Text style={tw("font-nunito-400 text-xs pl-2")}>0 - 29 mins</Text>
           </View>
           <View style={tw("flex-row items-center")}>
-            <ExclamationCircleIcon color={getColor("yellow-500")} size={24} />
-            <Text style={tw("font-nunito-400 text-xs pl-2")}>30 - 44 min</Text>
+            <ExclamationCircleIcon color={getColor("yellow-500")} size={20} />
+            <Text style={tw("font-nunito-400 text-xs pl-2")}>30 - 44 mins</Text>
           </View>
           <View style={tw("flex-row items-center")}>
-            <CheckCircleIcon color={getColor("green-500")} size={24} />
-            <Text style={tw("font-nunito-400 text-xs pl-2")}>45 - 60 min</Text>
+            <CheckCircleIcon color={getColor("green-500")} size={20} />
+            <Text style={tw("font-nunito-400 text-xs pl-2")}>45 - 60 mins</Text>
           </View>
         </View>
 

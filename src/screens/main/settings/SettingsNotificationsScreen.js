@@ -21,13 +21,13 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 
 const SettingsNotificationsScreen = () => {
   //useNotificationsPermissionQuery();
-
+  const { refetch } = useNotificationsPermissionQuery();
   const appState = useRef(AppState.currentState);
   const { state } = useAppContext();
   const expo_token = state?.user?.["custom:expo_token"];
   const email_pref = state?.user?.["custom:email_pref"];
   const text_pref = state?.user?.["custom:text_pref"];
-  const { refetch } = useNotificationsPermissionQuery();
+  
   const { mutate: updateUser, isLoading } = useUpdateUserMutation();
   const [time, setTime] = useState(new Date());
   console.log("init time, ", time);
@@ -193,16 +193,16 @@ const SettingsNotificationsScreen = () => {
                   )}
                   <View style={tw("w-64")}>
                     <Text style={tw("font-nunito-400 text-base w-full")}>
-                      Your daily reminder is set for{" "}
-                      {
-                        time.getHours() > 12
-                        ? time.getHours() - 12
-                        : time.getHours()}
-                      :
-                      {time.getMinutes() < 10
-                        ? "0" + String(time.getMinutes())
-                        : time.getMinutes()}
-                      {time.getHours() > 12 ? "pm" : "am"} every day.
+                    Your daily reminder is set for {" "}
+                    {
+                      time.getHours() > 12 
+                      ? time.getHours() - 12 
+                      : time.getHours() === 0 ? 12 
+                      : time.getHours()}
+                    :
+                    {(time.getMinutes() < 10 ? "0" : "") + time.getMinutes()} 
+                    {time.getHours() >= 12 ? "pm " : "am "}
+                    every day.
                     </Text>
                   </View>
                 </View>
@@ -221,14 +221,13 @@ const SettingsNotificationsScreen = () => {
                     Alert.alert(
                       "Updated",
                       `Your daily reminder is set for ${
-                        time.getHours() > 12
-                          ? time.getHours() - 12
-                          : time.getHours()
+                        time.getHours() > 12 
+                      ? time.getHours() - 12 
+                      : time.getHours() === 0 ? 12 
+                      : time.getHours()
                       }:${
-                        time.getMinutes() < 10
-                          ? "0" + String(time.getMinutes())
-                          : time.getMinutes()
-                      }${time.getHours() > 12 ? "pm" : "am"}`
+                        (time.getMinutes() < 10 ? "0" : "") + time.getMinutes()
+                      }${time.getHours() >= 12 ? "pm" : "am"}`
                     );
                   }}
                 />
