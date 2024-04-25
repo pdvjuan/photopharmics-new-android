@@ -45,7 +45,6 @@ const ForgotScreen = ({ route }) => {
         label="New Password"
         value={password}
         onChange={setPassword}
-        keyboardType="numeric"
         textContentType="newPassword"
         passwordRules="minlength: 6;"
         password
@@ -55,7 +54,7 @@ const ForgotScreen = ({ route }) => {
         Password Requirement:
       </Text>
       <Text style={{ color: 'black' }}>
-        - Minimum 6 Digit Numeric Pin
+        - Minimum 6 characters
       </Text>
 
       <Button
