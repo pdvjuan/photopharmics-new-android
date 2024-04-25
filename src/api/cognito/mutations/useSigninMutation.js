@@ -3,8 +3,11 @@ import { useMutation } from "react-query";
 import { useAppContext } from "../../../context/AppContext";
 import { Auth } from "@aws-amplify/auth";
 import { navigate } from "../../../helpers/navgationRef";
+import storage from "../../device/localStorage";
 
-const AmplifySignIn = async ({ username, password }) => {
+
+const AmplifySignIn = async ({ username, password}) => {
+  console.log("before going into signin, ", username, password);
   const user = await Auth.signIn(username, password);
   return user;
 };

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, Alert } from "react-native";
 import { tw } from "tailwind";
 import { Button, InputField } from "../../base";
 import useConfirmCodeMutation from "../../api/cognito/mutations/useConfirmCodeMutation";
 import useResendCodeMutation from "../../api/cognito/mutations/useResendCodeMutation";
 import AuthContainer from "./AuthContainer";
+import storage from "../../api/device/localStorage";
 
 const SigninScreen = ({ route }) => {
   const [code, setCode] = useState("");
@@ -13,8 +14,9 @@ const SigninScreen = ({ route }) => {
   const { mutate: resendCode, isLoading: l2 } = useResendCodeMutation();
   const isLoading = l1 || l2;
 
-  const handleConfirmButton = () => {
-    confirmCode({ username, code });
+
+ const handleConfirmButton = () => {
+    confirmCode({ username, code});
   };
 
   const handleResendButton = () => {
@@ -30,6 +32,17 @@ const SigninScreen = ({ route }) => {
     ]);
   };
 
+  if(!route?.params?.username){
+    storage.load({
+      key: 'usernameSaved'
+    }).then(usernameSaved => {
+      console.log('Loaded username:', usernameSaved);
+      setUsername(usernameSaved);
+    }).catch(err => {
+      console.warn('Failed to load username:', err.message);
+    });
+  }
+ 
   return (
     <AuthContainer
       headerText="Enter the 6-digit code sent to your email."

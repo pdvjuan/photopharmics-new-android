@@ -4,7 +4,7 @@ import { Text, Alert} from "react-native";
 import { Button, InputField} from "../../base"; 
 import useSignupMutation from "../../api/cognito/mutations/useSignupMutation";
 import AuthContainer from "./AuthContainer";
-import PasswordInputField from "../../base/PasswordInputField";
+//import PasswordInputField from "../../base/PasswordInputField";
 
 
 const INITIAL_ERRORS = {
@@ -17,15 +17,21 @@ const INITIAL_ERRORS = {
 };
 
 const SignupScreen = () => {
+  const lengthPW = 12;
   const [email, setEmail] = useState("");
   const [givenName, setGivenName] = useState("");
   const [familyName, setFamilyName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
-  const [password, setPassword] = useState("");
+  //const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(INITIAL_ERRORS);
   const [focus, setFocus] = useState(null);
   const { mutate: signUp, isLoading } = useSignupMutation();
+  const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$#';
+  let password = '';
+  for (let i = 0, n = charset.length; i < lengthPW; ++i) {
+    password += charset.charAt(Math.floor(Math.random() * n));
+  }
 
   const handleSignUpBtn = () => {
     if (hasErrors()) return;
@@ -39,7 +45,7 @@ const SignupScreen = () => {
       Alert.alert("Invalid Phone Number", "Please enter a valid 10 digit phone number.");
       return;
     } 
-
+   
     signUp({
       username: email,
       password,
@@ -52,6 +58,8 @@ const SignupScreen = () => {
     });
     
   };
+
+  
 
   // Email validation function
   const validateEmail = (email) => {
@@ -155,7 +163,7 @@ const SignupScreen = () => {
         - 10 digit number
       </Text>
 
-      <PasswordInputField
+      {/* <PasswordInputField
         label="Password"
         value={password}
         focus={ focus === "password"}
@@ -171,8 +179,8 @@ const SignupScreen = () => {
         Password requirement:
       </Text>
       <Text style={{ color: 'black' }}>
-        - Minimum 6 digit numeric pin
-      </Text>
+        - Minimum 6 characters
+      </Text> */}
 
       {/* <ToggleButtons
         label="Gender (Optional)"

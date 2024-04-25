@@ -2,8 +2,12 @@ import { Auth } from "@aws-amplify/auth";
 import { Alert } from "react-native";
 import { useMutation } from "react-query";
 import { navigate } from "../../../helpers/navgationRef";
+import storage from "../../device/localStorage";
+
+let pw;
 
 const AmplifySignUp = async (config) => {
+  pw = config?.password;
   config.attributes.phone_number = formatPhoneNumber(
     config?.attributes?.phone_number
   );
@@ -22,7 +26,23 @@ const onSuccess = (response) => {
     Alert.alert("Sign Up Successful. Please Login");
     navigate("Signin");
   } else {
-    navigate("ConfirmCode", { username: response?.user?.username });
+    storage.save({
+      key: 'usernameSaved',
+      data: response?.user?.username
+    });
+    storage.save({
+      key: 'passwordSaved',
+      data: pw
+    });
+    storage.save({
+      key: 'signUpTrigger',
+      data: true
+    });
+
+    console.log("username: ", response?.user?.username);
+    console.log("pw: ", pw);
+
+    navigate("ConfirmCode", { username: response?.user?.username, password: pw });
   }
 };
 
