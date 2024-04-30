@@ -87,7 +87,7 @@ const AutoSignInScreen = ( ) => {
       )}
       {!isLoading && (
         <Button
-          title="Sign In"
+          title="Log In"
           onPress={() => {
             dispatch({ type: "FIRST_TIME", payload: true });
             setIsLoading(true);

@@ -149,7 +149,7 @@ export default () => {
         )
       ) : (
         <AuthStack.Navigator
-          initialRouteName= {trigger ? "ConfirmCode" : "Signin"}
+          initialRouteName= {trigger ? "ConfirmCode" : "Signup"}
           screenOptions={{ headerShown: false }}
         >
           <AuthStack.Screen name="Signin" component={SigninScreen} options={{ unmountOnBlur: true }}/>
