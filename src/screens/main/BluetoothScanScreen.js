@@ -12,7 +12,7 @@ import IdentifyMyDeviceScreen from "./IdentifyMyDeviceScreen";
 import useSavedDeviceQuery from "../../api/device/queries/useSavedDeviceQuery";
 import useSaveDeviceMutation from "../../api/device/mutations/useSaveDeviceMutation";
 import { useAppContext } from "../../context/AppContext";
-
+import {requestBluetoothPermission} from "../../helpers/bluetooth/RequestBluetoothPermission";
 
 const MANAGER = new BleManager();
 const SCAN_DURATION = 5000;
@@ -33,6 +33,8 @@ const BluetoothScanScreen = ({ navigation: { navigate } }) => {
     error,
     refetch,
   } = useScanBLEDevicesQuery(MANAGER, SCAN_DURATION, SEARCH_NAME);
+  
+
 
   const { data: savedDeviceId, isLoading: isLoadingSavedDevice } =
     useSavedDeviceQuery();
@@ -43,6 +45,19 @@ const BluetoothScanScreen = ({ navigation: { navigate } }) => {
     saveDeviceToStorage({ deviceName: ble.localName });
     setDevice(ble);
   };
+
+  useEffect(() => {
+    // Directly call the imported function
+    const checkPermissions = async () => {
+      const hasPermission = await requestBluetoothPermission();
+      if (!hasPermission) {
+        
+      }
+    };
+
+    checkPermissions();
+
+  }, []);
 
   // useEffect(() => {
   //   // Check if devices are loaded and the list is not empty

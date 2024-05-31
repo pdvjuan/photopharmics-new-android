@@ -4,7 +4,7 @@ import {
   KeyboardAvoidingView,
   View,
   Text,
-  Alert, ScrollView
+  Alert, ScrollView, TouchableOpacity
 } from "react-native";
 import { tw } from "tailwind";
 import { Button, InputField} from "../../../base";
@@ -17,9 +17,12 @@ import useForgotPasswordMutation from "../../../api/cognito/mutations/useForgotP
 import useForgotPasswordSubmitMutation from "../../../api/cognito/mutations/useForgotPasswordSubmitMutationInSettings";
 import PasswordInputField from "../../../base/PasswordInputField";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import useSignoutMutation from "../../../api/cognito/mutations/useSignoutMutation";
+
 
 
 const SettingsInfoScreen = () => {
+  const { mutate: signOut } = useSignoutMutation();
   const { state } = useAppContext();
   const { user } = state;
   const [focus, setFocus] = useState(null);
@@ -41,6 +44,14 @@ const SettingsInfoScreen = () => {
     useUpdateUserMutation();
 
   const scrollViewRef = useRef();
+
+  const handleLogout = () => {
+    Alert.alert("Are you sure you want to sign out?",null,  [
+      { text: "Cancel", style: "cancel" },
+      { text: "Sign Out", onPress: signOut },
+    ]);
+  };
+
 
   useFocusEffect(
     React.useCallback(() => {
@@ -233,6 +244,19 @@ const SettingsInfoScreen = () => {
             />
           </View>
         {/* </ScrollView> */}
+
+        <View>
+        <TouchableOpacity
+          style={tw("w-full bottom-0 h-16")}
+          onPress={handleLogout}
+        >
+          <Text
+            style={tw("font-nunito-700 text-celeste-blue text-center text-2xl")}
+          >
+            Sign Out
+          </Text>
+        </TouchableOpacity>
+      </View>
         
         </KeyboardAwareScrollView>
       {/* </KeyboardAvoidingView> */} 

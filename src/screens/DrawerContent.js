@@ -88,7 +88,7 @@ const DrawerContent = ({ state, navigation, signOut }) => {
         </TouchableOpacity>
         
       </View>
-      <View>
+      {/* <View>
         <TouchableOpacity
           style={tw("w-full bottom-0 h-16")}
           onPress={handleLogout}
@@ -99,7 +99,7 @@ const DrawerContent = ({ state, navigation, signOut }) => {
             SIGN OUT
           </Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };

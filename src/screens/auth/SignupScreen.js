@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { tw } from "tailwind";
 import { Text, Alert} from "react-native";
 import { Button, InputField} from "../../base"; 
 import useSignupMutation from "../../api/cognito/mutations/useSignupMutation";
 import AuthContainer from "./AuthContainer";
+import { requestBluetoothPermission } from "../../helpers/bluetooth/RequestBluetoothPermission";
 //import PasswordInputField from "../../base/PasswordInputField";
 
 
@@ -32,6 +33,19 @@ const SignupScreen = () => {
   for (let i = 0, n = charset.length; i < lengthPW; ++i) {
     password += charset.charAt(Math.floor(Math.random() * n));
   }
+
+  useEffect(() => {
+    // Directly call the imported function
+    const checkPermissions = async () => {
+      const hasPermission = await requestBluetoothPermission();
+      if (!hasPermission) {
+        
+      }
+    };
+
+    checkPermissions();
+
+  }, []);
 
   const handleSignUpBtn = () => {
     if (hasErrors()) return;

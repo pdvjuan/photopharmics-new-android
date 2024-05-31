@@ -29,11 +29,10 @@ import Calendar from "../../components/Calendar";
 import GetOneMonth from "../../helpers/calendar/GetOneMonth";
 import * as Notifications from "expo-notifications";
 import DeviceInfo from "react-native-device-info";
-import { requestBluetoothPermission } from "../../helpers/bluetooth/RequestBluetoothPermission"
+import { requestBluetoothPermission } from "../../helpers/bluetooth/RequestBluetoothPermission";
 
 const HomeScreen = () => {
   // GETS EXPO PUSH PERMISSIONS
-  
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(response => {
@@ -86,7 +85,7 @@ const HomeScreen = () => {
  
   // console.log(cards);
 
-let userTimeZone = null;
+  let userTimeZone = null;
 
   userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -103,8 +102,6 @@ let userTimeZone = null;
   } else {
     console.error("Invalid timestamp format");
   }
-
-  
 
     const { data: sessions, 
     isLoading,
@@ -221,8 +218,14 @@ let userTimeZone = null;
     }
   };
 
-  
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log("in 30 s");
+  //     navigate("BluetoothScan");
+  //   }, 30000);
 
+  //   return () => clearInterval(interval);
+  // }, [navigate]);
 
 const getHeader = () => {
   return(
