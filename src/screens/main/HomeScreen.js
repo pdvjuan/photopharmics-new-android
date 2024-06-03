@@ -308,20 +308,21 @@ const getHeader = () => {
   useEffect(() => {
   console.log("HERE");
     let recent_sync = state?.user?.["custom:recent_sync"];
-    const NotificationDays = .75;
+    const NotificationDays = 0.5;
     const NotificationLimit =
       new Date().getTime() - NotificationDays * 24 * 60 * 60 * 1000;
 
     if ((!recent_sync || recent_sync < NotificationLimit) && !state.firstTime) {
       Alert.alert(
-        "Time to Update!",
-        "Welcome to your daily session. Tap below to check for updates from your Celeste device.",
+        "Welcome to your daily session!",
+        "Tap below to upload your Celeste session data from your Celeste device.",
         [          
-          {
-            text: "Snooze",
-            style: "cancel",
-          },
-          { text: "Check for Updates", onPress: () => navigate("BluetoothScan") },
+          // {
+          //   text: "Remind me later",
+          //   onPress: () => navigate("BluetoothScan"),
+          //   style: "cancel",
+          // },
+          { text: "Upload", onPress: () => navigate("BluetoothScan") },
         ]
       );
     }

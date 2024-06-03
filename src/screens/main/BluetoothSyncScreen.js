@@ -35,7 +35,7 @@ const BluetoothSyncScreen = ({ device, setDevice }) => {
     isError: hasCloudLogError,
     isSuccess: gotCloudLogs,
   } = useSessionsQuery(state?.user?.sub);
-  console.info("Sessions Data: " + data);
+  //console.info("Sessions Data: " + cloudSessions);
   let {
     mutate: uploadSessions,
     isLoading: isUploading,
