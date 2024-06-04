@@ -121,7 +121,7 @@ const LogsToSessions = (logs) => {
         timeStart = convertToUserTimeZone(on.sessionDate, on.sessionTime, userTimeZone);
         //console.log("Start time:", timeStart);
         startTimeString = moment(timeStart).format("HH:mm:ss");
-        console.log("filter", startTimeString);
+        console.log("strt: ", startTimeString);
     } else {
         timeStart = moment(`${on.sessionDate} ${on.sessionTime}`);
         startTimeString = moment(timeStart).format("HH:mm:ss");

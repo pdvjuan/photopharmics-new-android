@@ -308,7 +308,7 @@ const getHeader = () => {
   useEffect(() => {
   console.log("HERE");
     let recent_sync = state?.user?.["custom:recent_sync"];
-    const NotificationDays = 0.5;
+    const NotificationDays = 0.40;
     const NotificationLimit =
       new Date().getTime() - NotificationDays * 24 * 60 * 60 * 1000;
 
@@ -317,11 +317,10 @@ const getHeader = () => {
         "Welcome to your daily session!",
         "Tap below to upload your Celeste session data from your Celeste device.",
         [          
-          // {
-          //   text: "Remind me later",
-          //   onPress: () => navigate("BluetoothScan"),
-          //   style: "cancel",
-          // },
+          {
+            text: "Remind me later",
+            style: "cancel",
+          },
           { text: "Upload", onPress: () => navigate("BluetoothScan") },
         ]
       );
