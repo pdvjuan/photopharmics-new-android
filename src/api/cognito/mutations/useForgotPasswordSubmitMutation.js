@@ -2,8 +2,12 @@ import { Alert } from "react-native";
 import { useMutation } from "react-query";
 import { Auth } from "@aws-amplify/auth";
 import { navigate } from "../../../helpers/navgationRef";
+import storage from "../../device/localStorage";
+
+let pw;
 
 const AmplifyForgotPasswordSubmit = async ({ username, code, password }) => {
+  pw = password;
   await Auth.forgotPasswordSubmit(username, code, password);
 };
 
@@ -14,6 +18,10 @@ const useForgotPasswordSubmitMutation = () => {
         "Your Password Has Been Reset",
         "Please log in with your new password"
       );
+      storage.save({
+        key: 'passwordSaved',
+        data: pw
+      });
       navigate("Signin");
     },
     onError: ({ code, message }) => {

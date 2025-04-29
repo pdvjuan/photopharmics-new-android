@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { tw } from "tailwind";
 import { Text, Alert} from "react-native";
 import { Button, InputField} from "../../base"; 
 import useSignupMutation from "../../api/cognito/mutations/useSignupMutation";
 import AuthContainer from "./AuthContainer";
+import { requestBluetoothPermission } from "../../helpers/bluetooth/RequestBluetoothPermission";
 //import PasswordInputField from "../../base/PasswordInputField";
 
 
@@ -33,6 +34,19 @@ const SignupScreen = () => {
     password += charset.charAt(Math.floor(Math.random() * n));
   }
 
+  useEffect(() => {
+    // Directly call the imported function
+    const checkPermissions = async () => {
+      const hasPermission = await requestBluetoothPermission();
+      if (!hasPermission) {
+        
+      }
+    };
+
+    checkPermissions();
+
+  }, []);
+
   const handleSignUpBtn = () => {
     if (hasErrors()) return;
 
@@ -41,10 +55,10 @@ const SignupScreen = () => {
       return;
     } 
 
-    if (!validatePhoneNumber(phoneNumber)) {
-      Alert.alert("Invalid Phone Number", "Please enter a valid 10 digit phone number.");
-      return;
-    } 
+    // if (!validatePhoneNumber(phoneNumber)) {
+    //   Alert.alert("Invalid Phone Number", "Please enter a valid 10 digit phone number.");
+    //   return;
+    // } 
    
     signUp({
       username: email,
@@ -52,7 +66,7 @@ const SignupScreen = () => {
       attributes: {
         given_name: givenName,
         family_name: familyName,
-        phone_number: phoneNumber,
+        // phone_number: phoneNumber,
         'custom:expo_token': "token"
       },
     });
@@ -67,11 +81,11 @@ const SignupScreen = () => {
     return re.test(String(email).toLowerCase());
   };
 
-  // Phone number validation function
-  const validatePhoneNumber = (phoneNumber) => {
-    const re = /^\d{10}$/;
-    return re.test(String(phoneNumber));
-  };
+  // // Phone number validation function
+  // const validatePhoneNumber = (phoneNumber) => {
+  //   const re = /^\d{10}$/;
+  //   return re.test(String(phoneNumber));
+  // };
 
   const hasErrors = () => {
      // Reset errors state except for the messages array
@@ -89,10 +103,10 @@ const SignupScreen = () => {
     //   _errors.messages.push("Last Name is required");
     //   _errors.familyName = true;
     //}
-    if (!phoneNumber) {
-      _errors.messages.push("Phone Number is required");
-      _errors.phoneNumber = true;
-    }
+    // if (!phoneNumber) {
+    //   _errors.messages.push("Phone Number is required");
+    //   _errors.phoneNumber = true;
+    // }
 
     if (!password) {
       _errors.messages.push("Password is required");
@@ -145,7 +159,7 @@ const SignupScreen = () => {
         onFocus={() => setFocus(null)}
       />
 
-      <InputField
+      {/* <InputField
         label="Phone number"
         value={phoneNumber}
         onChange={setPhoneNumber}
@@ -155,13 +169,13 @@ const SignupScreen = () => {
         onSubmitEditing={() => setFocus("password")}
         onFocus={() => setFocus(null)}
         keyboardType="phone-pad"
-      />
-      <Text style={{ color: 'black' }}>
+      /> */}
+      {/* <Text style={{ color: 'black' }}>
         Phone number requirement:
-      </Text>
-      <Text style={{ color: 'black' }}>
+      </Text> */}
+      {/* <Text style={{ color: 'black' }}>
         - 10 digit number
-      </Text>
+      </Text> */}
 
       {/* <PasswordInputField
         label="Password"

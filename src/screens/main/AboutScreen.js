@@ -28,6 +28,19 @@ const AboutScreen = () => {
     </Text>
   </View>
   <View style={tw("py-2")}>
+    <View
+      style={tw(
+        "flex flex-row justify-between items-center border-b border-gray-200 py-2"
+      )}
+    >
+      <View style={tw("flex flex-row items-center")}>
+
+        <Text style={tw("text-gray-500 text-lg mx-2")}>Application Version</Text>
+      </View>
+      <View>
+        <Text style={tw("text-celeste-blue text-lg")}>1.0.7</Text>
+      </View>
+    </View>
     <TouchableOpacity onPress={handlePhonePress}>
     <View
       style={tw(

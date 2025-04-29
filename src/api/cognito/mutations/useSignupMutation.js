@@ -8,9 +8,9 @@ let pw;
 
 const AmplifySignUp = async (config) => {
   pw = config?.password;
-  config.attributes.phone_number = formatPhoneNumber(
-    config?.attributes?.phone_number
-  );
+  // config.attributes.phone_number = formatPhoneNumber(
+  //   config?.attributes?.phone_number
+  // );
   return await Auth.signUp(config);
 };
 

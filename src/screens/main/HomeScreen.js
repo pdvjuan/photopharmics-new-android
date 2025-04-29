@@ -6,7 +6,7 @@ import useSessionsQuery from "../../api/celeste/queries/useSessionsQuery";
 import HomeDashboard from "../../components/HomeDashboard";
 import ArticleCard from "../../components/ArticleCard";
 import useNotificationsPermissionQuery from "../../api/device/queries/useNotificationsPermissionQuery";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import PulsingDiv from "../../skeletons/PulsingDiv";
 import PageContainer from "../PageContainer";
 import {useAppContext}  from "../../context/AppContext";
@@ -29,11 +29,10 @@ import Calendar from "../../components/Calendar";
 import GetOneMonth from "../../helpers/calendar/GetOneMonth";
 import * as Notifications from "expo-notifications";
 import DeviceInfo from "react-native-device-info";
-import { requestBluetoothPermission } from "../../helpers/bluetooth/RequestBluetoothPermission"
+import { requestBluetoothPermission } from "../../helpers/bluetooth/RequestBluetoothPermission";
 
 const HomeScreen = () => {
   // GETS EXPO PUSH PERMISSIONS
-  
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(response => {
@@ -72,6 +71,7 @@ const HomeScreen = () => {
   }, []);
 
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
   const { state } = useAppContext();
   const { user } = state;
   const [givenName, setGivenName] = useState(user.given_name);
@@ -86,7 +86,7 @@ const HomeScreen = () => {
  
   // console.log(cards);
 
-let userTimeZone = null;
+  let userTimeZone = null;
 
   userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -103,8 +103,6 @@ let userTimeZone = null;
   } else {
     console.error("Invalid timestamp format");
   }
-
-  
 
     const { data: sessions, 
     isLoading,
@@ -221,8 +219,14 @@ let userTimeZone = null;
     }
   };
 
-  
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log("in 30 s");
+  //     navigate("BluetoothScan");
+  //   }, 30000);
 
+  //   return () => clearInterval(interval);
+  // }, [navigate]);
 
 const getHeader = () => {
   return(
@@ -304,26 +308,28 @@ const getHeader = () => {
 }
   useEffect(() => {
   console.log("HERE");
+    if(!isFocused) return;
     let recent_sync = state?.user?.["custom:recent_sync"];
-    const NotificationDays = .75;
+    const NotificationDays = 0.10;
     const NotificationLimit =
       new Date().getTime() - NotificationDays * 24 * 60 * 60 * 1000;
 
-    if ((!recent_sync || recent_sync < NotificationLimit) && !state.firstTime) {
+    if ((!recent_sync || recent_sync < NotificationLimit || duration < 60) && !state.firstTime) {
       Alert.alert(
-        "Time to Update!",
+        "Time to Update",
         "Welcome to your daily session. Tap below to check for updates from your Celeste device.",
         [          
           {
-            text: "Snooze",
+            text: "Remind me later",
+            //onPress: () => navigate("BluetoothScan") ,
             style: "cancel",
           },
-          { text: "Check for Updates", onPress: () => navigate("BluetoothScan") },
+          { text: "Upload your Celeste session data", onPress: () => navigate("BluetoothScan") },
         ]
       );
     }
 
-  }, [state.user, state.firstTime]);
+  }, [state.user, state.firstTime, duration, isFocused]);
 
   return (
     <PageContainer>

@@ -12,7 +12,7 @@ import IdentifyMyDeviceScreen from "./IdentifyMyDeviceScreen";
 import useSavedDeviceQuery from "../../api/device/queries/useSavedDeviceQuery";
 import useSaveDeviceMutation from "../../api/device/mutations/useSaveDeviceMutation";
 import { useAppContext } from "../../context/AppContext";
-
+import {requestBluetoothPermission} from "../../helpers/bluetooth/RequestBluetoothPermission";
 
 const MANAGER = new BleManager();
 const SCAN_DURATION = 5000;
@@ -33,6 +33,8 @@ const BluetoothScanScreen = ({ navigation: { navigate } }) => {
     error,
     refetch,
   } = useScanBLEDevicesQuery(MANAGER, SCAN_DURATION, SEARCH_NAME);
+  
+
 
   const { data: savedDeviceId, isLoading: isLoadingSavedDevice } =
     useSavedDeviceQuery();
@@ -44,16 +46,29 @@ const BluetoothScanScreen = ({ navigation: { navigate } }) => {
     setDevice(ble);
   };
 
-  // useEffect(() => {
-  //   // Check if devices are loaded and the list is not empty
-  //   if (devices && devices.length > 0 && !device) {
-  //     // Automatically select the first device from the list
-  //     setDevice(devices[0].ble);
+  useEffect(() => {
+    // Directly call the imported function
+    const checkPermissions = async () => {
+      const hasPermission = await requestBluetoothPermission();
+      if (!hasPermission) {
+        
+      }
+    };
 
-  //     // Optionally, save the device or perform other actions here
-  //     saveDeviceToStorage({ deviceName: devices[0].ble.localName });
-  //   }
-  // }, [devices, device, saveDeviceToStorage]);
+    checkPermissions();
+
+  }, []);
+
+  useEffect(() => {
+    // Check if devices are loaded and the list is not empty
+    if (devices && devices.length > 0 && !device) {
+      // Automatically select the first device from the list
+      setDevice(devices[0].ble);
+
+      // Optionally, save the device or perform other actions here
+      saveDeviceToStorage({ deviceName: devices[0].ble.localName });
+    }
+  }, [devices, device, saveDeviceToStorage]);
 
   if (isError)
     return <BluetoothRequiredScreen error={error?.message} refetch={refetch} />;
