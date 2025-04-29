@@ -43,7 +43,7 @@
         "INTERNET"
       ],
       "googleServicesFile": "./google-services.json",
-      "versionCode": 48
+      "versionCode": 53
     },
     "web": {
       "favicon": "./assets/favicon.png"

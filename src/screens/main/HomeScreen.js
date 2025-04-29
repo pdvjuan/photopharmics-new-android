@@ -6,7 +6,7 @@ import useSessionsQuery from "../../api/celeste/queries/useSessionsQuery";
 import HomeDashboard from "../../components/HomeDashboard";
 import ArticleCard from "../../components/ArticleCard";
 import useNotificationsPermissionQuery from "../../api/device/queries/useNotificationsPermissionQuery";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import PulsingDiv from "../../skeletons/PulsingDiv";
 import PageContainer from "../PageContainer";
 import {useAppContext}  from "../../context/AppContext";
@@ -71,6 +71,7 @@ const HomeScreen = () => {
   }, []);
 
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
   const { state } = useAppContext();
   const { user } = state;
   const [givenName, setGivenName] = useState(user.given_name);
@@ -307,26 +308,28 @@ const getHeader = () => {
 }
   useEffect(() => {
   console.log("HERE");
+    if(!isFocused) return;
     let recent_sync = state?.user?.["custom:recent_sync"];
-    const NotificationDays = 0.40;
+    const NotificationDays = 0.10;
     const NotificationLimit =
       new Date().getTime() - NotificationDays * 24 * 60 * 60 * 1000;
 
-    if ((!recent_sync || recent_sync < NotificationLimit) && !state.firstTime) {
+    if ((!recent_sync || recent_sync < NotificationLimit || duration < 60) && !state.firstTime) {
       Alert.alert(
-        "Welcome to your daily session!",
-        "Tap below to upload your Celeste session data from your Celeste device.",
+        "Time to Update",
+        "Welcome to your daily session. Tap below to check for updates from your Celeste device.",
         [          
           {
             text: "Remind me later",
+            //onPress: () => navigate("BluetoothScan") ,
             style: "cancel",
           },
-          { text: "Upload", onPress: () => navigate("BluetoothScan") },
+          { text: "Upload your Celeste session data", onPress: () => navigate("BluetoothScan") },
         ]
       );
     }
 
-  }, [state.user, state.firstTime]);
+  }, [state.user, state.firstTime, duration, isFocused]);
 
   return (
     <PageContainer>

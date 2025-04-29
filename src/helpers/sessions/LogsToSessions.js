@@ -93,7 +93,7 @@ const LogsToSessions = (logs) => {
 
       const comparisonStartDate = new Date(on.sessionDate);
       const comparisonEndDate = new Date(on.sessionDate);
-      console.log("input start, ",`${on.sessionDate} ${on.sessionTime}`);
+      //console.log("input start, ",`${on.sessionDate} ${on.sessionTime}`);
 
       let timeStart = null;
       let testStart = null;
@@ -107,12 +107,12 @@ const LogsToSessions = (logs) => {
         // Parse the session date and time in Mountain Time (MT)
         const mtDateTime = `${sessionDate}T${sessionTime}`;
         const mtMoment = moment.tz(mtDateTime, "America/Denver");
-        console.log("Mountain Time (MT):", mtMoment.format());
+        //console.log("Mountain Time (MT):", mtMoment.format());
 
         // Use moment-timezone to convert the Mountain Time date to the user's time zone
         const convertedDate = mtMoment.clone().tz(userTimeZone);
         console.log("User Time Zone:", userTimeZone);
-        console.log("Converted Time:", convertedDate.format());
+        //console.log("Converted Time:", convertedDate.format());
 
         return convertedDate;
       }
@@ -121,7 +121,7 @@ const LogsToSessions = (logs) => {
         timeStart = convertToUserTimeZone(on.sessionDate, on.sessionTime, userTimeZone);
         //console.log("Start time:", timeStart);
         startTimeString = moment(timeStart).format("HH:mm:ss");
-        console.log("strt: ", startTimeString);
+        //console.log("strt: ", startTimeString);
     } else {
         timeStart = moment(`${on.sessionDate} ${on.sessionTime}`);
         startTimeString = moment(timeStart).format("HH:mm:ss");
@@ -131,7 +131,7 @@ const LogsToSessions = (logs) => {
     if (comparisonEndDate > cutOffDate) {
         timeEnd = convertToUserTimeZone(off.sessionDate, off.sessionTime, userTimeZone);
         endTimeString =  moment(timeEnd).format("HH:mm:ss");
-        console.log("End time:", moment(timeEnd).format("HH:mm:ss"));
+        //console.log("End time:", moment(timeEnd).format("HH:mm:ss"));
     } else {
         timeEnd = moment(`${off.sessionDate} ${off.sessionTime}`);
         endTimeString =  moment(timeEnd).format("HH:mm:ss");
@@ -146,7 +146,7 @@ const LogsToSessions = (logs) => {
         duration = timeEnd.diff(timeStart, "minutes");
     }
     
-    console.log("Duration in minutes:", duration);
+    //console.log("Duration in minutes:", duration);
     
       
       const entry = {
