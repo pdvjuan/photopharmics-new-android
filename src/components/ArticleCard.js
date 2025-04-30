@@ -3,7 +3,7 @@ import { Image, Linking, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
-import { tw, getColor } from "tailwind";
+import { tw, getColor } from "../../tailwind";
 import moment from "moment";
 
 const ArticleCard = ({ card }) => {

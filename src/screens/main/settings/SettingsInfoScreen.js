@@ -6,7 +6,7 @@ import {
   Text,
   Alert, ScrollView, TouchableOpacity
 } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../../../tailwind";
 import { Button, InputField} from "../../../base";
 import { useFocusEffect } from '@react-navigation/native';
 import { useAppContext } from "../../../context/AppContext";

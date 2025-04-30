@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../../../tailwind";
 import { InputField } from "../../../base";
 import { Button } from "../../../base";
 import ModalScreen from "../../../base/ModalScreen";

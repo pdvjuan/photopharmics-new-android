@@ -4,7 +4,7 @@ import {
   XCircleIcon,
   ExclamationCircleIcon,
 } from "react-native-heroicons/solid";
-import { getColor } from "tailwind";
+import { getColor } from "../../tailwind";
 
 const GetStatusIcon = (time, warn, success, size = 15) => {
   if (time >= success) {

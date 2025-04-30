@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Linking,TouchableOpacity } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 import PageContainer from "../PageContainer";
 
 

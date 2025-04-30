@@ -7,7 +7,7 @@ import {
   Text,
   Alert,
 } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../../../tailwind";
 import { Button, InputField } from "../../../base";
 import PageContainer from "../../PageContainer";
 import useSavedDeviceQuery from "../../../api/device/queries/useSavedDeviceQuery";

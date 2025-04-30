@@ -4,7 +4,7 @@ import { InputField } from "../../base";
 import Button from "../../base/Button";
 import useForgotPasswordMutation from "../../api/cognito/mutations/useForgotPasswordMutation";
 import AuthContainer from "./AuthContainer";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 
 const ForgotScreen = () => {
   const [email, setEmail] = useState("");

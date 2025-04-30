@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../../../tailwind";
 import { InputField } from "../../../base";
 import { Button } from "../../../base";
 import ModalScreen from "../../../base/ModalScreen";

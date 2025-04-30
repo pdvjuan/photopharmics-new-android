@@ -1,7 +1,7 @@
 import React from "react";
 import PulsingDiv from "./PulsingDiv";
 import { View, Text } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../tailwind";
 
 const HomeDashboardLoading = () => {
   return (

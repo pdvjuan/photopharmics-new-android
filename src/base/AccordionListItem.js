@@ -6,7 +6,7 @@ import {
   Animated,
   Easing,
 } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../tailwind";
 import { ChevronDownIcon } from "react-native-heroicons/outline";
 
 const AccordionListItem = ({ title, children }) => {

@@ -11,7 +11,7 @@ import PulsingDiv from "../../skeletons/PulsingDiv";
 import PageContainer from "../PageContainer";
 import {useAppContext}  from "../../context/AppContext";
 import { navigate} from "../../helpers/navgationRef";
-import { tw,  getColor } from "tailwind";
+import { tw,  getColor } from "../../../tailwind";
 import {
   CalendarIcon,
   PresentationChartBarIcon,

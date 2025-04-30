@@ -7,7 +7,7 @@ import {
   ExclamationCircleIcon,
   XCircleIcon,
 } from "react-native-heroicons/outline";
-import { getColor } from "tailwind";
+import { getColor } from "../../../tailwind";
 import Calendar from "../../components/Calendar";
 import GetMonths from "../../helpers/calendar/GetMonths";
 import useSessionsQuery from "../../api/celeste/queries/useSessionsQuery";

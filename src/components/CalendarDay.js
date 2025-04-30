@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import { MinusCircleIcon} from "react-native-heroicons/outline";
 import { XCircleIcon } from "react-native-heroicons/solid";
 import moment from "moment";
-import { tw, getColor } from "tailwind";
+import { tw, getColor } from "../../tailwind";
 import GetStatusIcon from "../helpers/GetStatusIcon";
 
 // TODO: MAKE THIS CHECK SESSION BY DATE. THIS COMPONENT RENDERS 100+ times so we should move almost all logic out of it

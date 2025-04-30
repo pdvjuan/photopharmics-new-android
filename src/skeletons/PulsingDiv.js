@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Animated } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../tailwind";
 
 export default ({ classes }) => {
   const pulse = useRef(new Animated.Value(1)).current;

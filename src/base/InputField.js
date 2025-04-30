@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { tw } from "tailwind";
+import { tw } from "../../tailwind";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 
 const InputField = ({

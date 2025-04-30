@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { EyeIcon, EyeOffIcon } from 'react-native-heroicons/outline';
-import { tw } from 'tailwind'; 
+import { tw } from '../../tailwind'; 
 
 const PasswordInputField = ({
   label,

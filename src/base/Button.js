@@ -1,5 +1,5 @@
 import React from "react";
-import { tw } from "tailwind";
+import { tw } from "../../tailwind";
 import { TouchableOpacity, View, Text, ActivityIndicator } from "react-native";
 
 const Button = ({ title, onPress, style, textStyle, isLoading }) => {

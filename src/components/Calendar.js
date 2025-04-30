@@ -4,7 +4,7 @@ import CalendarDay from "./CalendarDay";
 import GetDatesInMonth from "../helpers/calendar/GetDatesInMonth";
 import GetDatesWithSessions from "../helpers/calendar/GetDatesWithSessions";
 import moment from "moment";
-import { tw } from "tailwind";
+import { tw } from "../../tailwind";
 
 const Calendar = ({ monthDate, sessions }) => {
   const dates = GetDatesInMonth(monthDate);

@@ -1,5 +1,5 @@
 import React from "react";
-import { tw } from "tailwind";
+import { tw } from "../../tailwind";
 import { View, Text } from "react-native";
 import Button from "./Button";
 

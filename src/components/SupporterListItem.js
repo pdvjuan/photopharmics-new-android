@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { DotsVerticalIcon } from "react-native-heroicons/outline";
-import { tw } from "tailwind";
+import { tw } from "../../tailwind";
 
 const SupporterListItem = ({ supporter }) => {
   return (

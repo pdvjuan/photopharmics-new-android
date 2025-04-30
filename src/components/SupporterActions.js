@@ -1,7 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity, Alert } from "react-native";
 import { PencilAltIcon, TrashIcon } from "react-native-heroicons/outline";
-import { tw } from "tailwind";
+import { tw } from "../../tailwind";
 import { useNavigation } from "@react-navigation/core";
 import useDeleteSupporterMutation from "../api/celeste/mutations/useDeleteSupporterMutation";
 import { useAppContext } from "../context/AppContext";

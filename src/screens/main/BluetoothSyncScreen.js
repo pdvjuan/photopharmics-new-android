@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { MinusCircleIcon, XCircleIcon } from "react-native-heroicons/outline";
 import { CheckCircleIcon } from "react-native-heroicons/solid";
-import { tw, getColor } from "tailwind";
+import { tw, getColor } from "../../../tailwind";
 import { useAppContext } from "../../context/AppContext";
 import useDeviceLogsQuery from "../../api/device/queries/useDeviceLogsQuery";
 import useSessionsQuery from "../../api/celeste/queries/useSessionsQuery";

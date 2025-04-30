@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Text, Alert } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 import { Button, InputField } from "../../base";
 import useConfirmCodeMutation from "../../api/cognito/mutations/useConfirmCodeMutation";
 import useResendCodeMutation from "../../api/cognito/mutations/useResendCodeMutation";

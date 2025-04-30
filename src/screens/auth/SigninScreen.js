@@ -3,7 +3,7 @@ import { Alert, Text } from "react-native";
 import { Button, InputField } from "../../base";
 import useSignInMutation from "../../api/cognito/mutations/useSigninMutation";
 import AuthContainer from "./AuthContainer";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 import { useAppContext } from "../../context/AppContext";
 import PasswordInputField from "../../base/PasswordInputField";
 import storage from "../../api/device/localStorage";

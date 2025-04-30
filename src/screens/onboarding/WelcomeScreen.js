@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 import { Button } from "../../base";
 import PageContainer from "../PageContainer";
 import { useAppContext } from "../../context/AppContext";

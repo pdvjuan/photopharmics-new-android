@@ -7,7 +7,7 @@ import {
   Text,
 } from "react-native";
 import { Button } from "../../base";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 import PageContainer from "../PageContainer";
 import { useNavigation } from "@react-navigation/core";
 

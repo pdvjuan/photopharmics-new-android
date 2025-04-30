@@ -3,7 +3,7 @@ import moment from "moment";
 import { View, Text, TouchableOpacity } from "react-native";
 
 import { useAppContext } from "../context/AppContext";
-import { tw } from "tailwind";
+import { tw } from "../../tailwind";
 import {
   CalendarIcon,
   PresentationChartBarIcon,

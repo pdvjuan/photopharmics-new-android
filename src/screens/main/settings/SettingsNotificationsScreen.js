@@ -8,7 +8,7 @@ import {
   Platform,
 } from "react-native";
 import { Button } from "../../../base";
-import { tw } from "tailwind";
+import { tw } from "../../../../tailwind";
 import PageContainer from "../../PageContainer";
 import { useAppContext } from "../../../context/AppContext";
 import OpenAppSettings from "../../../helpers/device/OpenAppSettings";

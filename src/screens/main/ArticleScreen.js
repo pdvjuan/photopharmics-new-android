@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import usePostsQuery from "../../api/celeste-blog/queries/usePostsQuery";
 import { WebView } from "react-native-webview";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 import {PageContainer} from "../PageContainer";
 
 const ArticleScreen = ({ route }) => {

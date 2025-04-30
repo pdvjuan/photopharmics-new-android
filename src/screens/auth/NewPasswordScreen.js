@@ -4,7 +4,7 @@ import { InputField } from "../../base";
 import Button from "../../base/Button";
 import useForgotPasswordSubmitMutation from "../../api/cognito/mutations/useForgotPasswordSubmitMutation";
 import AuthContainer from "./AuthContainer";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 import PasswordInputField from "../../base/PasswordInputField";
 
 const ForgotScreen = ({ route }) => {

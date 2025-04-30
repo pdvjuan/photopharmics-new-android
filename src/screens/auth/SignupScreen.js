@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 import { Text, Alert} from "react-native";
 import { Button, InputField} from "../../base"; 
 import useSignupMutation from "../../api/cognito/mutations/useSignupMutation";

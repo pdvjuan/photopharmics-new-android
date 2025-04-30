@@ -5,7 +5,7 @@ import { Button } from "../../../base";
 import SupporterListItem from "../../../components/SupporterListItem";
 import SupporterActions from "../../../components/SupporterActions";
 import PageContainer from "../../PageContainer";
-import { tw } from "tailwind";
+import { tw } from "../../../../tailwind";
 import { SwipeListView } from "react-native-swipe-list-view";
 import { ActivityIndicator, SafeAreaView, Text, View } from "react-native";
 

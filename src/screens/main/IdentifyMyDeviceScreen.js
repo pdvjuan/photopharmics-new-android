@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Image, Modal } from "react-native";
-import { tw } from "tailwind";
+import { tw } from "../../../tailwind";
 import { Button } from "../../base";
 import GestureRecognizer from "react-native-swipe-gestures";
 
